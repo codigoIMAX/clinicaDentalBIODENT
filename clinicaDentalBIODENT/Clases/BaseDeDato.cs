@@ -15,7 +15,7 @@ namespace clinicaDentalBIODENT.Clases
             conexion.Open();
             return conexion;
         }
-        public void cerrarConexion(SqlConnection conexion)
+        public static void cerrarConexion(SqlConnection conexion)
         {
             conexion.Close();
         }

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Runtime.InteropServices;
 namespace clinicaDentalBIODENT
 {
     public partial class FrmLogin : Form
@@ -17,6 +17,11 @@ namespace clinicaDentalBIODENT
         {
             InitializeComponent();
         }
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -27,7 +32,7 @@ namespace clinicaDentalBIODENT
         }
         private void btnCerrar_MouseLeave(object sender, EventArgs e)
         {
-            btnCerrar.BackColor = Color.FromArgb(170, 216, 239);
+            btnCerrar.BackColor = Color.FromArgb(0, 122, 204);
         }
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
@@ -39,7 +44,7 @@ namespace clinicaDentalBIODENT
         }
         private void btnMinimizar_MouseLeave(object sender, EventArgs e)
         {
-            btnMinimizar.BackColor = Color.FromArgb(170, 216, 239);
+            btnMinimizar.BackColor = Color.FromArgb(0, 122, 204);
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -49,20 +54,22 @@ namespace clinicaDentalBIODENT
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             Doctor doctor = new Doctor(txtUsuario.Text, txtContrasenia.Text);
-            if (doctor.validarDoctor())
-            {
+            //if (doctor.validarDoctor())
+            //{
                 MessageBox.Show("Bienvenid@ al sistema", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FrmPrincipal frmPrincipal = new FrmPrincipal();
+                frmPrincipal.asignarDoctor(doctor);
                 desplazar();
                 frmPrincipal.Show();
                 this.Hide();
-            }
-            else
+            //}
+            /*else
             {
-                MessageBox.Show("Usuario y/o Contraseñia incorrectos", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUsuario.Text = "";
-                txtContrasenia.Text = "";
-            }
+                MessageBox.Show("Usuario y/o Contraseña incorrectos", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsuario.Text = "Usuario";
+                txtContrasenia.Text = "Contraseña";
+                txtContrasenia.PasswordChar = '\0';
+            }*/
         }
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -88,6 +95,43 @@ namespace clinicaDentalBIODENT
                 punto.X += 1;
                 this.Location = punto;
             }
+        }
+
+        private void txtUsuario_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (txtUsuario.Text == "Usuario")
+                txtUsuario.Text = "";
+        }
+
+        private void txtUsuario_Leave(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text == "")
+                txtUsuario.Text = "Usuario";
+        }
+
+        private void txtContrasenia_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (txtContrasenia.Text == "Contraseña")
+            {
+                txtContrasenia.Text = "";
+                txtContrasenia.PasswordChar = '*';
+            }
+        }
+
+        private void txtContrasenia_Leave(object sender, EventArgs e)
+        {
+            if (txtContrasenia.Text == "")
+            {
+                txtContrasenia.Text = "Contraseña";
+                txtContrasenia.PasswordChar = '\0';
+            }
+                
+        }
+
+        private void pnlBarraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

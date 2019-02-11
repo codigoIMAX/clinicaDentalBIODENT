@@ -9,23 +9,22 @@ namespace clinicaDentalBIODENT.Clases
     class Detalle
     {
         private int idDetalle;
-        private string descripcion;
+        private string actividad;
         private int cantidad;
         private double precioUnitario;
         public Detalle()
         {
 
         }
-        public Detalle(int idDetalle, string descripcion, int cantidad, double precioUnitario)
+        public Detalle(int idDetalle, string actividad, int cantidad, double precioUnitario)
         {
             this.IdDetalle = idDetalle;
-            this.Descripcion = descripcion;
+            this.Actividad = actividad;
             this.Cantidad = cantidad;
             this.PrecioUnitario = precioUnitario;
         }
-
         public int IdDetalle { get => idDetalle; set => idDetalle = value; }
-        public string Descripcion { get => descripcion; set => descripcion = value; }
+        public string Actividad { get => actividad; set => actividad = value; }
         public int Cantidad { get => cantidad; set => cantidad = value; }
         public double PrecioUnitario { get => precioUnitario; set => precioUnitario = value; }
     }

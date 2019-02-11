@@ -27,7 +27,6 @@ namespace clinicaDentalBIODENT.Clases
             this.ColorIzquierda = colorIzquierda;
             this.ColorCentro = colorCentro;
         }
-
         public int NumeroPieza { get => numeroPieza; set => numeroPieza = value; }
         public string ColorArriba { get => colorArriba; set => colorArriba = value; }
         public string ColorDerecha { get => colorDerecha; set => colorDerecha = value; }
