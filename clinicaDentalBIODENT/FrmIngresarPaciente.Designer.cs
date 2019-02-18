@@ -157,10 +157,10 @@
             // 
             this.txtCorreoElectronico.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCorreoElectronico.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreoElectronico.Location = new System.Drawing.Point(671, 146);
+            this.txtCorreoElectronico.Location = new System.Drawing.Point(631, 146);
             this.txtCorreoElectronico.MaxLength = 50;
             this.txtCorreoElectronico.Name = "txtCorreoElectronico";
-            this.txtCorreoElectronico.Size = new System.Drawing.Size(171, 16);
+            this.txtCorreoElectronico.Size = new System.Drawing.Size(208, 16);
             this.txtCorreoElectronico.TabIndex = 23;
             // 
             // label11
@@ -168,7 +168,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label11.Location = new System.Drawing.Point(510, 148);
+            this.label11.Location = new System.Drawing.Point(470, 148);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(155, 16);
             this.label11.TabIndex = 22;
@@ -178,7 +178,7 @@
             // 
             this.rdbFemenino.AutoSize = true;
             this.rdbFemenino.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbFemenino.Location = new System.Drawing.Point(427, 147);
+            this.rdbFemenino.Location = new System.Drawing.Point(387, 147);
             this.rdbFemenino.Name = "rdbFemenino";
             this.rdbFemenino.Size = new System.Drawing.Size(77, 19);
             this.rdbFemenino.TabIndex = 21;
@@ -190,7 +190,7 @@
             this.rdbMasculino.AutoSize = true;
             this.rdbMasculino.Checked = true;
             this.rdbMasculino.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbMasculino.Location = new System.Drawing.Point(339, 147);
+            this.rdbMasculino.Location = new System.Drawing.Point(299, 147);
             this.rdbMasculino.Name = "rdbMasculino";
             this.rdbMasculino.Size = new System.Drawing.Size(82, 19);
             this.rdbMasculino.TabIndex = 20;
@@ -203,7 +203,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label10.Location = new System.Drawing.Point(292, 148);
+            this.label10.Location = new System.Drawing.Point(252, 148);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 16);
             this.label10.TabIndex = 19;
@@ -211,6 +211,7 @@
             // 
             // cbxEstadoCivil
             // 
+            this.cbxEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEstadoCivil.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxEstadoCivil.FormattingEnabled = true;
             this.cbxEstadoCivil.Items.AddRange(new object[] {
@@ -221,7 +222,7 @@
             "Unión Libre"});
             this.cbxEstadoCivil.Location = new System.Drawing.Point(132, 146);
             this.cbxEstadoCivil.Name = "cbxEstadoCivil";
-            this.cbxEstadoCivil.Size = new System.Drawing.Size(147, 23);
+            this.cbxEstadoCivil.Size = new System.Drawing.Size(103, 23);
             this.cbxEstadoCivil.TabIndex = 18;
             // 
             // label9
@@ -427,8 +428,8 @@
             // lineShape11
             // 
             this.lineShape11.Name = "lineShape11";
-            this.lineShape11.X1 = 669;
-            this.lineShape11.X2 = 842;
+            this.lineShape11.X1 = 629;
+            this.lineShape11.X2 = 839;
             this.lineShape11.Y1 = 168;
             this.lineShape11.Y2 = 168;
             // 
@@ -561,6 +562,7 @@
             // txtMedicamento
             // 
             this.txtMedicamento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMedicamento.Enabled = false;
             this.txtMedicamento.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMedicamento.Location = new System.Drawing.Point(57, 29);
             this.txtMedicamento.MaxLength = 100;
@@ -591,6 +593,7 @@
             this.rdbMNo.TabStop = true;
             this.rdbMNo.Text = "No";
             this.rdbMNo.UseVisualStyleBackColor = true;
+            this.rdbMNo.CheckedChanged += new System.EventHandler(this.rdbMNo_CheckedChanged);
             // 
             // label15
             // 
@@ -613,6 +616,7 @@
             this.rdbMSi.TabIndex = 24;
             this.rdbMSi.Text = "Si";
             this.rdbMSi.UseVisualStyleBackColor = true;
+            this.rdbMSi.CheckedChanged += new System.EventHandler(this.rdbMSi_CheckedChanged);
             // 
             // shapeContainer3
             // 
@@ -650,6 +654,7 @@
             // txtMotivo
             // 
             this.txtMotivo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMotivo.Enabled = false;
             this.txtMotivo.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMotivo.Location = new System.Drawing.Point(57, 29);
             this.txtMotivo.MaxLength = 100;
@@ -680,6 +685,7 @@
             this.rdbTNo.TabStop = true;
             this.rdbTNo.Text = "No";
             this.rdbTNo.UseVisualStyleBackColor = true;
+            this.rdbTNo.CheckedChanged += new System.EventHandler(this.rdbTNo_CheckedChanged);
             // 
             // label12
             // 
@@ -702,6 +708,7 @@
             this.rdbTSi.TabIndex = 24;
             this.rdbTSi.Text = "Si";
             this.rdbTSi.UseVisualStyleBackColor = true;
+            this.rdbTSi.CheckedChanged += new System.EventHandler(this.rdbTSi_CheckedChanged);
             // 
             // shapeContainer2
             // 
@@ -822,6 +829,7 @@
             // txtCantidad
             // 
             this.txtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCantidad.Enabled = false;
             this.txtCantidad.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.Location = new System.Drawing.Point(84, 27);
             this.txtCantidad.MaxLength = 50;
@@ -850,6 +858,7 @@
             this.chbxFuma.TabIndex = 9;
             this.chbxFuma.Text = "Fuma";
             this.chbxFuma.UseVisualStyleBackColor = true;
+            this.chbxFuma.CheckedChanged += new System.EventHandler(this.chbxFuma_CheckedChanged);
             // 
             // shapeContainer4
             // 
@@ -885,6 +894,7 @@
             // txtFrecuencia
             // 
             this.txtFrecuencia.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFrecuencia.Enabled = false;
             this.txtFrecuencia.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFrecuencia.Location = new System.Drawing.Point(84, 27);
             this.txtFrecuencia.MaxLength = 50;
@@ -913,6 +923,7 @@
             this.chbxBebidasAlcoholicas.TabIndex = 9;
             this.chbxBebidasAlcoholicas.Text = "Bebidas Alcohólicas";
             this.chbxBebidasAlcoholicas.UseVisualStyleBackColor = true;
+            this.chbxBebidasAlcoholicas.CheckedChanged += new System.EventHandler(this.chbxBebidasAlcoholicas_CheckedChanged);
             // 
             // shapeContainer5
             // 
@@ -1114,55 +1125,55 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.TextBox txtCorreoElectronico;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.RadioButton rdbFemenino;
-        private System.Windows.Forms.RadioButton rdbMasculino;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbxEstadoCivil;
         private System.Windows.Forms.Label label9;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape11;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.RichTextBox txtHObservaciones;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Panel pnlMedicamento;
         public System.Windows.Forms.TextBox txtMedicamento;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RadioButton rdbMNo;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.RadioButton rdbMSi;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer3;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape9;
         private System.Windows.Forms.Panel pnlTratamiento;
         public System.Windows.Forms.TextBox txtMotivo;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RadioButton rdbTNo;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RadioButton rdbTSi;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape8;
         private System.Windows.Forms.Panel pnlAntecedentes;
-        private System.Windows.Forms.RichTextBox txtAPFObservaciones;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel pnlFumar;
         public System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.CheckBox chbxFuma;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer4;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape12;
         private System.Windows.Forms.Panel pnlBebidasAlcoholicas;
         public System.Windows.Forms.TextBox txtFrecuencia;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.CheckBox chbxBebidasAlcoholicas;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer5;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape10;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.CheckBox chbxEnfCardiaca;
-        private System.Windows.Forms.CheckBox chbxHipertension;
-        private System.Windows.Forms.CheckBox chbxAsma;
-        private System.Windows.Forms.CheckBox chbxDiabetes;
-        private System.Windows.Forms.CheckBox chbxTuberculosis;
-        private System.Windows.Forms.CheckBox chbxSida;
-        private System.Windows.Forms.CheckBox chbxHemorragia;
-        private System.Windows.Forms.CheckBox chbxAlergiaAnestesia;
-        private System.Windows.Forms.CheckBox chbxAlergiaAntibiotico;
+        public System.Windows.Forms.RadioButton rdbFemenino;
+        public System.Windows.Forms.RadioButton rdbMasculino;
+        public System.Windows.Forms.ComboBox cbxEstadoCivil;
+        public System.Windows.Forms.RichTextBox txtHObservaciones;
+        public System.Windows.Forms.RadioButton rdbMNo;
+        public System.Windows.Forms.RadioButton rdbMSi;
+        public System.Windows.Forms.RadioButton rdbTNo;
+        public System.Windows.Forms.RadioButton rdbTSi;
+        public System.Windows.Forms.RichTextBox txtAPFObservaciones;
+        public System.Windows.Forms.CheckBox chbxFuma;
+        public System.Windows.Forms.CheckBox chbxBebidasAlcoholicas;
+        public System.Windows.Forms.CheckBox chbxEnfCardiaca;
+        public System.Windows.Forms.CheckBox chbxHipertension;
+        public System.Windows.Forms.CheckBox chbxAsma;
+        public System.Windows.Forms.CheckBox chbxDiabetes;
+        public System.Windows.Forms.CheckBox chbxTuberculosis;
+        public System.Windows.Forms.CheckBox chbxSida;
+        public System.Windows.Forms.CheckBox chbxHemorragia;
+        public System.Windows.Forms.CheckBox chbxAlergiaAnestesia;
+        public System.Windows.Forms.CheckBox chbxAlergiaAntibiotico;
     }
 }

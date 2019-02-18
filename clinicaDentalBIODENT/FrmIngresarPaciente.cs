@@ -14,6 +14,8 @@ namespace clinicaDentalBIODENT
 {
     public partial class FrmIngresarPaciente : Form
     {
+        public bool editar = false;
+        public string cedulaAnterior;
         Doctor doctor;
         Paciente paciente;
         HistoriaClinica historiaClinica;
@@ -189,18 +191,33 @@ namespace clinicaDentalBIODENT
                                             antecedentePF.Fuma = true;
                                         else
                                             antecedentePF.Fuma = false;
-                                        antecedentePF.NumeroCigarros = txtFrecuencia.Text;
+                                        antecedentePF.NumeroCigarros = txtCantidad.Text;
                                         antecedentePF.Observaciones = txtAPFObservaciones.Text;
                                         historiaClinica.Antecedentes = antecedentePF;
-                                        if(doctor.ingresarPaciente(paciente, historiaClinica))
+                                        if (editar)
                                         {
-                                            MessageBox.Show("Paciente ingresado con éxito", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            limpiarTextos();
-                                            FrmPaciente frmPaciente = Owner as FrmPaciente;
-                                            frmPaciente.llenarDataGridView(doctor.obtenerPacientes());
+                                            if (doctor.actualizarPaciente(historiaClinica, cedulaAnterior))
+                                            {
+                                                MessageBox.Show("Paciente modificado con éxito", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                FrmPaciente frmPaciente = Owner as FrmPaciente;
+                                                frmPaciente.llenarDataGridView(doctor.obtenerPacientes());
+                                                this.Close();
+                                            }
+                                            else
+                                                MessageBox.Show("El paciente no se pudo modificar. \n Revise los campos", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                         else
-                                            MessageBox.Show("El paciente ya se encuentra registrado. \n La cédula ya existe registrada", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        {
+                                            if (doctor.ingresarPaciente(paciente, historiaClinica))
+                                            {
+                                                MessageBox.Show("Paciente ingresado con éxito", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                limpiarTextos();
+                                                FrmPaciente frmPaciente = Owner as FrmPaciente;
+                                                frmPaciente.llenarDataGridView(doctor.obtenerPacientes());
+                                            }
+                                            else
+                                                MessageBox.Show("El paciente ya se encuentra registrado. \n La cédula ya existe registrada", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
                                     }
                                     else
                                         MessageBox.Show("La dirección de correo electrónico está mal escrita", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -276,15 +293,30 @@ namespace clinicaDentalBIODENT
                                     antecedentePF.NumeroCigarros = txtFrecuencia.Text;
                                     antecedentePF.Observaciones = txtAPFObservaciones.Text;
                                     historiaClinica.Antecedentes = antecedentePF;
-                                    if (doctor.ingresarPaciente(paciente, historiaClinica))
+                                    if (editar)
                                     {
-                                        MessageBox.Show("Paciente ingresado con éxito", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        limpiarTextos();
-                                        FrmPaciente frmPaciente = Owner as FrmPaciente;
-                                        frmPaciente.llenarDataGridView(doctor.obtenerPacientes());
+                                        if (doctor.actualizarPaciente(historiaClinica, cedulaAnterior))
+                                        {
+                                            MessageBox.Show("Paciente modificado con éxito", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            FrmPaciente frmPaciente = Owner as FrmPaciente;
+                                            frmPaciente.llenarDataGridView(doctor.obtenerPacientes());
+                                            this.Close();
+                                        }
+                                        else
+                                            MessageBox.Show("El paciente no se pudo modificar. \n Revise los campos", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
                                     else
-                                        MessageBox.Show("El paciente ya se encuentra registrado. \n La cédula ya existe registrada", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    {
+                                        if (doctor.ingresarPaciente(paciente, historiaClinica))
+                                        {
+                                            MessageBox.Show("Paciente ingresado con éxito", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            limpiarTextos();
+                                            FrmPaciente frmPaciente = Owner as FrmPaciente;
+                                            frmPaciente.llenarDataGridView(doctor.obtenerPacientes());
+                                        }
+                                        else
+                                            MessageBox.Show("El paciente ya se encuentra registrado. \n La cédula ya existe registrada", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                             }
                             else
@@ -337,6 +369,42 @@ namespace clinicaDentalBIODENT
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void rdbTSi_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMotivo.Enabled = true;
+        }
+
+        private void rdbTNo_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMotivo.Enabled = false;
+        }
+
+        private void rdbMSi_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMedicamento.Enabled = true;
+        }
+
+        private void rdbMNo_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMedicamento.Enabled = false;
+        }
+
+        private void chbxBebidasAlcoholicas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbxBebidasAlcoholicas.Checked)
+                txtFrecuencia.Enabled = true;
+            else
+                txtFrecuencia.Enabled = false;
+        }
+
+        private void chbxFuma_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbxFuma.Checked)
+                txtCantidad.Enabled = true;
+            else
+                txtCantidad.Enabled = false;
         }
     }
 }

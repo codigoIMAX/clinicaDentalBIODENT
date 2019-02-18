@@ -94,7 +94,7 @@ CREATE PROCEDURE spIngresarPaciente
 @cedula varchar(10), @nombres varchar(100), @apellidos varchar(100), @fechaNacimiento date, 
 @sexo bit, @ocupacion varchar(50), @estadoCivil varchar(50), @direccion varchar(100), 
 @telefono varchar(10), @celular varchar(10), @correoElectronico varchar(50), @tratamientoMedicoActual varchar(100),
-@tomaMedicamentoActual varchar(100), @observacionesH varchar(100), @alergiaAntibiotico bit, @alegiaAnestesia bit,
+@tomaMedicamentoActual varchar(100), @observacionesH varchar(100), @alergiaAntibiotico bit, @alergiaAnestesia bit,
 @hemorragia bit, @sida bit, @tuberculosis bit, @diabetes bit, @asma bit, @hipertension bit, @enfermedadCardiaca bit,
 @bebidasAlcoholicas bit, @frecuencia varchar(50), @fuma bit, @numeroCigarros varchar(50), @observacionesA varchar(100), @salida bit OUTPUT AS BEGIN
 	BEGIN TRY
@@ -109,7 +109,7 @@ CREATE PROCEDURE spIngresarPaciente
 				SET @lazo = 1
 				SET @numeroPieza = 11
 				SET @numeroHistoria = (SELECT numeroHistoriaClinica FROM tblHistoriaClinica WHERE cedulaPaciente = @cedula)
-				INSERT INTO tblAntecedentePF VALUES (@numeroHistoria, @alergiaAntibiotico, @alegiaAnestesia, @hemorragia, @sida, 
+				INSERT INTO tblAntecedentePF VALUES (@numeroHistoria, @alergiaAntibiotico, @alergiaAnestesia, @hemorragia, @sida, 
 				@tuberculosis, @diabetes, @asma, @hipertension, @enfermedadCardiaca, @bebidasAlcoholicas, @frecuencia, @fuma, 
 				@numeroCigarros, @observacionesA)
 				WHILE @lazo <= 52 BEGIN
@@ -150,3 +150,6 @@ EXECUTE spIngresarPaciente '1716116809', 'Alejandro Esteban', 'Guerrero Tipán', 
 0, 0, 0, 0, 0, 0, 'No toma', 0, 'No fuma', 'S/N', @salida OUTPUT
 PRINT @salida
 GO
+SELECT * FROM tblPaciente ORDER BY apellidos
+SELECT * FROM tblPiezaDental
+SELECT * FROM tblHistoriaClinica INNER JOIN tblAntecedentePF ON tblHistoriaClinica.numeroHistoriaClinica = tblAntecedentePF.numeroHistoriaClinica WHERE tblHistoriaClinica.cedulaPaciente = '1716116809'

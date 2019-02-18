@@ -16,6 +16,7 @@ namespace clinicaDentalBIODENT
     {
         Doctor doctor;
         Paciente paciente;
+        HistoriaClinica historiaClinica;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -148,14 +149,92 @@ namespace clinicaDentalBIODENT
         {
             this.paciente = (Paciente)paciente;
         }
+        public void asignarHistoriaClinica(Object historia)
+        {
+            this.historiaClinica = (HistoriaClinica)historia;
+        }
         private void btnHistoriaClinica_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                pnlHistoriaClinica.Visible = true;
+                pnlPlanTratamiento.Visible = false;
+                pnlTratamiento.Visible = false;
+                pnlSalir.Visible = false;
+                FrmHistoriaClinica frmHistoriaClinica = new FrmHistoriaClinica();
+                frmHistoriaClinica.txtApellidos.Text = paciente.Apellidos;
+                frmHistoriaClinica.txtNombres.Text = paciente.Nombres;
+                if (historiaClinica.TratamientoMedicoActual != "")
+                {
+                    frmHistoriaClinica.txtMotivo.Text = historiaClinica.TratamientoMedicoActual;
+                    frmHistoriaClinica.rdbTSi.Checked = true;
+                    frmHistoriaClinica.txtMotivo.Enabled = true;
+                }
+                if (historiaClinica.TomaMedicamentoActual != "")
+                {
+                    frmHistoriaClinica.txtMedicamento.Text = historiaClinica.TomaMedicamentoActual;
+                    frmHistoriaClinica.rdbMSi.Checked = true;
+                    frmHistoriaClinica.txtMedicamento.Enabled = true;
+                }
+                frmHistoriaClinica.txtHObservaciones.Text = historiaClinica.Observaciones;
+                if (historiaClinica.Antecedentes.AlergiaAntibiotico)
+                    frmHistoriaClinica.chbxAlergiaAntibiotico.Checked = true;
+                if (historiaClinica.Antecedentes.AlergiaAnestesia)
+                    frmHistoriaClinica.chbxAlergiaAnestesia.Checked = true;
+                if (historiaClinica.Antecedentes.Hemorragia)
+                    frmHistoriaClinica.chbxHemorragia.Checked = true;
+                if (historiaClinica.Antecedentes.Sida)
+                    frmHistoriaClinica.chbxSida.Checked = true;
+                if (historiaClinica.Antecedentes.Tuberculosis)
+                    frmHistoriaClinica.chbxTuberculosis.Checked = true;
+                if (historiaClinica.Antecedentes.Diabetes)
+                    frmHistoriaClinica.chbxDiabetes.Checked = true;
+                if (historiaClinica.Antecedentes.Hipertension)
+                    frmHistoriaClinica.chbxHipertension.Checked = true;
+                if (historiaClinica.Antecedentes.Asma)
+                    frmHistoriaClinica.chbxAsma.Checked = true;
+                if (historiaClinica.Antecedentes.EnfermedadCardiaca)
+                    frmHistoriaClinica.chbxEnfCardiaca.Checked = true;
+                if (historiaClinica.Antecedentes.BebidasAlcoholicas)
+                {
+                    frmHistoriaClinica.chbxBebidasAlcoholicas.Checked = true;
+                    frmHistoriaClinica.txtFrecuencia.Text = historiaClinica.Antecedentes.Frecuencia;
+                    frmHistoriaClinica.txtFrecuencia.Enabled = true;
+                }
+                if (historiaClinica.Antecedentes.Fuma)
+                {
+                    frmHistoriaClinica.chbxFuma.Checked = true;
+                    frmHistoriaClinica.txtCantidad.Text = historiaClinica.Antecedentes.NumeroCigarros;
+                    frmHistoriaClinica.txtCantidad.Enabled = true;
+                }
+                frmHistoriaClinica.txtAPFObservaciones.Text = historiaClinica.Antecedentes.Observaciones;
+                abrirFormHijo(frmHistoriaClinica);
+            }
+            catch
+            {
+                MessageBox.Show("Seleccione un paciente en la sección PACIENTES para visualizar su Historia Clínica", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnPlanTratamiento_Click(object sender, EventArgs e)
+        {
+            pnlHistoriaClinica.Visible = false;
+            pnlPlanTratamiento.Visible = true;
+            pnlTratamiento.Visible = false;
+            pnlSalir.Visible = false;
+        }
+
+        private void btnTratamiento_Click(object sender, EventArgs e)
+        {
+            pnlHistoriaClinica.Visible = false;
+            pnlPlanTratamiento.Visible = false;
+            pnlTratamiento.Visible = true;
+            pnlSalir.Visible = false;
         }
     }
 }

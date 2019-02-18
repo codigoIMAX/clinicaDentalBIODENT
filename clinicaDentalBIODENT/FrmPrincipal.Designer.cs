@@ -68,7 +68,7 @@
             this.pnlBarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBarraTitulo.Location = new System.Drawing.Point(0, 0);
             this.pnlBarraTitulo.Name = "pnlBarraTitulo";
-            this.pnlBarraTitulo.Size = new System.Drawing.Size(1000, 35);
+            this.pnlBarraTitulo.Size = new System.Drawing.Size(1180, 35);
             this.pnlBarraTitulo.TabIndex = 1;
             this.pnlBarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlBarraTitulo_MouseDown);
             // 
@@ -116,7 +116,7 @@
             this.btnMinimizar.FlatAppearance.BorderSize = 0;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
-            this.btnMinimizar.Location = new System.Drawing.Point(936, 1);
+            this.btnMinimizar.Location = new System.Drawing.Point(1116, 1);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(32, 33);
             this.btnMinimizar.TabIndex = 2;
@@ -130,7 +130,7 @@
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.Location = new System.Drawing.Point(967, 1);
+            this.btnCerrar.Location = new System.Drawing.Point(1147, 1);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(32, 33);
             this.btnCerrar.TabIndex = 1;
@@ -158,7 +158,7 @@
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 35);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(180, 565);
+            this.pnlMenu.Size = new System.Drawing.Size(180, 665);
             this.pnlMenu.TabIndex = 2;
             // 
             // pnlSalir
@@ -202,7 +202,7 @@
             this.lblAnio.AutoSize = true;
             this.lblAnio.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.lblAnio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblAnio.Location = new System.Drawing.Point(67, 526);
+            this.lblAnio.Location = new System.Drawing.Point(67, 631);
             this.lblAnio.Name = "lblAnio";
             this.lblAnio.Size = new System.Drawing.Size(41, 19);
             this.lblAnio.TabIndex = 12;
@@ -213,7 +213,7 @@
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.lblFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblFecha.Location = new System.Drawing.Point(2, 502);
+            this.lblFecha.Location = new System.Drawing.Point(2, 607);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(178, 19);
             this.lblFecha.TabIndex = 11;
@@ -224,7 +224,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(51, 400);
+            this.lblHora.Location = new System.Drawing.Point(51, 505);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(82, 33);
             this.lblHora.TabIndex = 10;
@@ -235,7 +235,7 @@
             this.lblSegundos.AutoSize = true;
             this.lblSegundos.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.lblSegundos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.lblSegundos.Location = new System.Drawing.Point(70, 366);
+            this.lblSegundos.Location = new System.Drawing.Point(70, 471);
             this.lblSegundos.Name = "lblSegundos";
             this.lblSegundos.Size = new System.Drawing.Size(45, 33);
             this.lblSegundos.TabIndex = 9;
@@ -251,7 +251,7 @@
             this.cpbReloj.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(216)))), ((int)(((byte)(239)))));
             this.cpbReloj.InnerMargin = 2;
             this.cpbReloj.InnerWidth = -1;
-            this.cpbReloj.Location = new System.Drawing.Point(15, 331);
+            this.cpbReloj.Location = new System.Drawing.Point(15, 436);
             this.cpbReloj.MarqueeAnimationSpeed = 1000;
             this.cpbReloj.Name = "cpbReloj";
             this.cpbReloj.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(247)))), ((int)(((byte)(56)))));
@@ -309,6 +309,7 @@
             this.btnTratamiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTratamiento.UseVisualStyleBackColor = true;
             this.btnTratamiento.Visible = false;
+            this.btnTratamiento.Click += new System.EventHandler(this.btnTratamiento_Click);
             this.btnTratamiento.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnTratamiento_MouseMove);
             // 
             // btnPlanTratamiento
@@ -328,6 +329,7 @@
             this.btnPlanTratamiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPlanTratamiento.UseVisualStyleBackColor = true;
             this.btnPlanTratamiento.Visible = false;
+            this.btnPlanTratamiento.Click += new System.EventHandler(this.btnPlanTratamiento_Click);
             this.btnPlanTratamiento.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPlanTratamiento_MouseMove);
             // 
             // btnHistoriaClinica
@@ -355,7 +357,7 @@
             this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenedor.Location = new System.Drawing.Point(180, 35);
             this.pnlContenedor.Name = "pnlContenedor";
-            this.pnlContenedor.Size = new System.Drawing.Size(820, 565);
+            this.pnlContenedor.Size = new System.Drawing.Size(1000, 665);
             this.pnlContenedor.TabIndex = 3;
             // 
             // tmrFechaHora
@@ -369,7 +371,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.ClientSize = new System.Drawing.Size(1180, 700);
             this.Controls.Add(this.pnlContenedor);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlBarraTitulo);

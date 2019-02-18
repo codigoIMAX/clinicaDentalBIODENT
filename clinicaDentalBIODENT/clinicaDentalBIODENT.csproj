@@ -65,6 +65,12 @@
     <Compile Include="Clases\Paciente.cs" />
     <Compile Include="Clases\PiezaDental.cs" />
     <Compile Include="Clases\PlanTratamiento.cs" />
+    <Compile Include="FrmHistoriaClinica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHistoriaClinica.Designer.cs">
+      <DependentUpon>FrmHistoriaClinica.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmIngresarPaciente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmHistoriaClinica.resx">
+      <DependentUpon>FrmHistoriaClinica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmIngresarPaciente.resx">
       <DependentUpon>FrmIngresarPaciente.cs</DependentUpon>
     </EmbeddedResource>
