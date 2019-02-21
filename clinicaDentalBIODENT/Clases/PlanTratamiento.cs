@@ -9,7 +9,8 @@ namespace clinicaDentalBIODENT.Clases
     class PlanTratamiento
     {
         private int idPlanTratamiento;
-        private int estado;
+        private string descripcion;
+        private bool estado;
         private DateTime fechaPlanTratamiento;
         private List<Detalle> detalles;
         private List<Actividad> actividades;
@@ -20,9 +21,10 @@ namespace clinicaDentalBIODENT.Clases
         {
 
         }
-        public PlanTratamiento(int idPlanTratamiento, int estado, DateTime fechaPlanTratamiento, List<Detalle> detalles, List<Actividad> actividades, List<Abono> abonos, double subtotal, double total)
+        public PlanTratamiento(int idPlanTratamiento, string descripcion, bool estado, DateTime fechaPlanTratamiento, List<Detalle> detalles, List<Actividad> actividades, List<Abono> abonos, double subtotal, double total)
         {
             this.IdPlanTratamiento = idPlanTratamiento;
+            this.Descripcion = descripcion;
             this.Estado = estado;
             this.FechaPlanTratamiento = fechaPlanTratamiento;
             this.Detalles = detalles;
@@ -32,10 +34,11 @@ namespace clinicaDentalBIODENT.Clases
             this.Total = total;
         }
         public int IdPlanTratamiento { get => idPlanTratamiento; set => idPlanTratamiento = value; }
-        public int Estado { get => estado; set => estado = value; }
+        public bool Estado { get => estado; set => estado = value; }
         public DateTime FechaPlanTratamiento { get => fechaPlanTratamiento; set => fechaPlanTratamiento = value; }
         public double Subtotal { get => subtotal; set => subtotal = value; }
         public double Total { get => total; set => total = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
         internal List<Detalle> Detalles { get => detalles; set => detalles = value; }
         internal List<Actividad> Actividades { get => actividades; set => actividades = value; }
         internal List<Abono> Abonos { get => abonos; set => abonos = value; }

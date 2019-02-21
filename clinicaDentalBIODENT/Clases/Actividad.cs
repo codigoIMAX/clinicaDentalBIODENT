@@ -8,10 +8,6 @@ namespace clinicaDentalBIODENT.Clases
 {
     class Actividad
     {
-        private int idActividad;
-        private DateTime fechaActividad;
-        private int numeroPieza;
-        private string detalle;
         public Actividad()
         {
 
@@ -23,9 +19,9 @@ namespace clinicaDentalBIODENT.Clases
             this.NumeroPieza = numeroPieza;
             this.Detalle = detalle;
         }
-        public int IdActividad { get => idActividad; set => idActividad = value; }
-        public DateTime FechaActividad { get => fechaActividad; set => fechaActividad = value; }
-        public int NumeroPieza { get => numeroPieza; set => numeroPieza = value; }
-        public string Detalle { get => detalle; set => detalle = value; }
+        public int IdActividad { get; set; }
+        public DateTime FechaActividad { get; set; }
+        public int NumeroPieza { get; set; }
+        public string Detalle { get; set; }
     }
 }

@@ -42,7 +42,7 @@ GO
 CREATE TABLE tblAntecedentePF(
 numeroHistoriaClinica int FOREIGN KEY REFERENCES tblHistoriaClinica (numeroHistoriaClinica) ON UPDATE CASCADE ON DELETE CASCADE,
 alergiaAntibiotico bit,
-alegiaAnestesia bit,
+alergiaAnestesia bit,
 hemorragia bit,
 sida bit,
 tuberculosis bit,
@@ -58,8 +58,9 @@ observaciones varchar(100)
 )
 GO
 CREATE TABLE tblPlanTratamiento(
-idPlanTratamiento int PRIMARY KEY,
+idPlanTratamiento int PRIMARY KEY IDENTITY,
 numeroHistoriaClinica int FOREIGN KEY REFERENCES tblHistoriaClinica (numeroHistoriaClinica) ON UPDATE CASCADE ON DELETE CASCADE,
+descripcion varchar(50),
 estado bit,
 fechaPlanTratamiento date,
 subtotal money,
@@ -144,12 +145,45 @@ CREATE PROCEDURE spIngresarPaciente
 	END CATCH
 END
 GO
+CREATE PROCEDURE spActualizarPaciente
+@cedulaAnterior varchar(10), @cedula varchar(10), @nombres varchar(100), @apellidos varchar(100), @fechaNacimiento date, 
+@sexo bit, @ocupacion varchar(50), @estadoCivil varchar(50), @direccion varchar(100), 
+@telefono varchar(10), @celular varchar(10), @correoElectronico varchar(50), @tratamientoMedicoActual varchar(100),
+@tomaMedicamentoActual varchar(100), @observacionesH varchar(100), @alergiaAntibiotico bit, @alergiaAnestesia bit,
+@hemorragia bit, @sida bit, @tuberculosis bit, @diabetes bit, @asma bit, @hipertension bit, @enfermedadCardiaca bit,
+@bebidasAlcoholicas bit, @frecuencia varchar(50), @fuma bit, @numeroCigarros varchar(50), @observacionesA varchar(100), @salida bit OUTPUT AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			DECLARE @numeroHistoriaClinica int
+			SET @numeroHistoriaClinica = (SELECT numeroHistoriaClinica FROM tblHistoriaClinica WHERE cedulaPaciente = @cedulaAnterior)
+			UPDATE tblPaciente SET cedula = @cedula, nombres = @nombres, apellidos = @apellidos, fechaNacimiento = @fechaNacimiento, sexo = @sexo, 
+			ocupacion = @ocupacion, estadoCivil = @estadoCivil, direccion = @direccion, telefono = @telefono, celular = @celular, correoElectronico = @correoElectronico
+			WHERE cedula = @cedulaAnterior
+			UPDATE tblHistoriaClinica SET tratamientoMedicoActual = @tratamientoMedicoActual, tomaMedicamentoActual = @tomaMedicamentoActual, observaciones = @observacionesH
+			WHERE numeroHistoriaClinica = @numeroHistoriaClinica
+			UPDATE tblAntecedentePF SET alergiaAntibiotico = @alergiaAntibiotico, alergiaAnestesia = @alergiaAnestesia, hemorragia = @hemorragia, sida = @sida, 
+			tuberculosis = @tuberculosis, diabetes = @diabetes, asma = @asma, hipertension = @hipertension, enfermedadCardiaca = @enfermedadCardiaca, 
+			bebidasAlcoholicas = @bebidasAlcoholicas, frecuencia = @frecuencia, fuma = @fuma, numeroCigarros = @numeroCigarros, observaciones = @observacionesA 
+			WHERE numeroHistoriaClinica = @numeroHistoriaClinica
+			SET @salida = 1
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		SET @salida = 0
+		ROLLBACK TRANSACTION
+	END CATCH
+END
+GO
+
 DECLARE @salida bit
 EXECUTE spIngresarPaciente '1716116809', 'Alejandro Esteban', 'Guerrero Tipán', '21/08/1994', 0, 'Estudiante Universitario', 'Soltero',
 'De Los Guabos Pasaje N48A E10-37 El Inca', '2402538', '0987858621', 'alejo_guerrero94@hotmail.com', 'N/A', 'N/A', 'S/N', 0, 0, 0, 0,
 0, 0, 0, 0, 0, 0, 'No toma', 0, 'No fuma', 'S/N', @salida OUTPUT
 PRINT @salida
 GO
-SELECT * FROM tblPaciente ORDER BY apellidos
-SELECT * FROM tblPiezaDental
-SELECT * FROM tblHistoriaClinica INNER JOIN tblAntecedentePF ON tblHistoriaClinica.numeroHistoriaClinica = tblAntecedentePF.numeroHistoriaClinica WHERE tblHistoriaClinica.cedulaPaciente = '1716116809'
+SELECT * FROM tblHistoriaClinica
+SELECT * FROM tblHistoriaClinica INNER JOIN tblAntecedentePF ON tblHistoriaClinica.numeroHistoriaClinica = tblAntecedentePF.numeroHistoriaClinica WHERE tblHistoriaClinica.cedulaPaciente = '0503628109'
+SELECT * FROM tblAntecedentePF
+SELECT * FROM tblPlanTratamiento
+SELECT * FROM tblDetalle
+SELECT TOP 1 numeroHistoriaClinica FROM tblHistoriaClinica ORDER BY numeroHistoriaClinica DESC

@@ -241,6 +241,167 @@ namespace clinicaDentalBIODENT.Clases
             BaseDeDato.cerrarConexion(conexion);
             return false;
         }
+        public DataTable obtenerPlanesTratamiento(int numeroHistoriaClinica)
+        {
+            int numero = 1;
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("Id");
+            tbl.Columns.Add("N°");
+            tbl.Columns.Add("Descripcion");
+            tbl.Columns.Add("Estado");
+            tbl.Columns.Add("Fecha del Plan de Tratamiento");
+            tbl.Columns.Add("Subtotal");
+            tbl.Columns.Add("Total");
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "SELECT * FROM tblPlanTratamiento WHERE numeroHistoriaClinica = " + numeroHistoriaClinica;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    if(reader.GetBoolean(3))
+                        tbl.Rows.Add(reader.GetInt32(0), numero++, reader.GetString(2), "Activo", reader.GetDateTime(4).ToString("dd/MM/yyyy"), Convert.ToString(reader.GetSqlMoney(5)), Convert.ToString(reader.GetSqlMoney(6)));
+                    else
+                        tbl.Rows.Add(reader.GetInt32(0), numero++, reader.GetString(2), "Terminado", reader.GetDateTime(4).ToString("dd/MM/yyyy"), Convert.ToString(reader.GetSqlMoney(5)), Convert.ToString(reader.GetSqlMoney(6)));
+                }
+            }
+            reader.Close();
+            BaseDeDato.cerrarConexion(conexion);
+            return tbl;
+        }
+        public DataTable obtenerDetalles(int idPlanTratamiento)
+        {
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("N°");
+            tbl.Columns.Add("Actividad");
+            tbl.Columns.Add("Cantidad");
+            tbl.Columns.Add("Precio Unitario");
+            tbl.Columns.Add("Sub Total");
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "SELECT * FROM tblDetalle WHERE idPlanTratamiento = " + idPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    tbl.Rows.Add(reader.GetInt32(1), reader.GetString(2), reader.GetInt32(3), Convert.ToString(reader.GetSqlMoney(4)), reader.GetInt32(3) * Convert.ToDouble(Convert.ToString(reader.GetSqlMoney(4))));
+                }
+            }
+            reader.Close();
+            BaseDeDato.cerrarConexion(conexion);
+            return tbl;
+        }
+        public List<Detalle> llenarDetalles(int idPlanTratamiento)
+        {
+            Detalle detalle;
+            List<Detalle> detalles = new List<Detalle>();
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "SELECT * FROM tblDetalle WHERE idPlanTratamiento = " + idPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    detalle = new Detalle();
+                    detalle.IdDetalle = reader.GetInt32(1);
+                    detalle.Actividad = reader.GetString(2);
+                    detalle.Cantidad = reader.GetInt32(3);
+                    detalle.PrecioUnitario = Convert.ToDouble(Convert.ToString(reader.GetSqlMoney(4)));
+                    detalles.Add(detalle);
+                }
+            }
+            reader.Close();
+            BaseDeDato.cerrarConexion(conexion);
+            return detalles;
+        }
+        public bool ingresarPlanTratamiento(PlanTratamiento planTratamiento, int numeroHistoriaClinica)
+        {
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "INSERT INTO tblPlanTratamiento VALUES (" + numeroHistoriaClinica + ", '" + planTratamiento.Descripcion + "', '" + planTratamiento.Estado + 
+                "', '" + planTratamiento.FechaPlanTratamiento + "', " + planTratamiento.Subtotal + ", " + planTratamiento.Total + ")";
+            SqlCommand comando = new SqlCommand(query, conexion);
+            if(comando.ExecuteNonQuery() > 0)
+            {
+                query = "SELECT TOP 1 idPlanTratamiento FROM tblPlanTratamiento ORDER BY idPlanTratamiento DESC";
+                comando = new SqlCommand(query, conexion);
+                SqlDataReader reader = comando.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    planTratamiento.IdPlanTratamiento = reader.GetInt32(0);
+                    reader.Close();
+                    foreach (var aux in planTratamiento.Detalles)
+                    {
+                        query = "INSERT INTO tblDetalle VALUES (" + planTratamiento.IdPlanTratamiento + ", " + aux.IdDetalle + ", '" + aux.Actividad + "', " +
+                            aux.Cantidad + ", " + aux.PrecioUnitario + ")";
+                        comando = new SqlCommand(query, conexion);
+                        if (comando.ExecuteNonQuery() > 0)
+                            continue;
+                    }
+                    BaseDeDato.cerrarConexion(conexion);
+                    return true;
+                }
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+            else
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+                
+        }
+        public bool modificarPlanTratamiento(PlanTratamiento planTratamiento)
+        {
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "UPDATE tblPlanTratamiento SET descripcion = '" + planTratamiento.Descripcion + "', estado = '" + planTratamiento.Estado + "', fechaPlanTratamiento = '" +
+                planTratamiento.FechaPlanTratamiento + "', subtotal = " + planTratamiento.Subtotal + ", total = " + planTratamiento.Total + " WHERE idPlanTratamiento = " + planTratamiento.IdPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            if (comando.ExecuteNonQuery() > 0)
+            {
+                query = "DELETE FROM tblDetalle WHERE idPlanTratamiento = " + planTratamiento.IdPlanTratamiento;
+                comando = new SqlCommand(query, conexion);
+                if (comando.ExecuteNonQuery() > 0)
+                {
+                    foreach (var aux in planTratamiento.Detalles)
+                    {
+                        query = "INSERT INTO tblDetalle VALUES (" + planTratamiento.IdPlanTratamiento + ", " + aux.IdDetalle + ", '" + aux.Actividad + "', " +
+                            aux.Cantidad + ", " + aux.PrecioUnitario + ")";
+                        comando = new SqlCommand(query, conexion);
+                        if (comando.ExecuteNonQuery() > 0)
+                            continue;
+                    }
+                    BaseDeDato.cerrarConexion(conexion);
+                    return true;
+                }
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+            else
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+        }
+        public bool eliminarPlanTratamiento(int idTratamiento)
+        {
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "DELETE FROM tblPlanTratamiento WHERE idPlanTratamiento = " + idTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            if(comando.ExecuteNonQuery() > 0)
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return true;
+            }
+            else
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+        }
         public int calcularEdad(DateTime fechaNacimiento)
         {
             int edad;

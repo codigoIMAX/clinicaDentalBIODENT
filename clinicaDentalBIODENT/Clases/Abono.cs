@@ -8,8 +8,6 @@ namespace clinicaDentalBIODENT.Clases
 {
     class Abono
     {
-        private DateTime fechaAbono;
-        private double cantidad;
         public Abono()
         {
 
@@ -19,7 +17,7 @@ namespace clinicaDentalBIODENT.Clases
             this.FechaAbono = fechaAbono;
             this.Cantidad = cantidad;
         }
-        public DateTime FechaAbono { get => fechaAbono; set => fechaAbono = value; }
-        public double Cantidad { get => cantidad; set => cantidad = value; }
+        public DateTime FechaAbono { get; set; }
+        public double Cantidad { get; set; }
     }
 }

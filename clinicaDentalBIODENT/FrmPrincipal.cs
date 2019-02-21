@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using clinicaDentalBIODENT.Clases;
-
 namespace clinicaDentalBIODENT
 {
     public partial class FrmPrincipal : Form
@@ -223,10 +222,23 @@ namespace clinicaDentalBIODENT
 
         private void btnPlanTratamiento_Click(object sender, EventArgs e)
         {
-            pnlHistoriaClinica.Visible = false;
-            pnlPlanTratamiento.Visible = true;
-            pnlTratamiento.Visible = false;
-            pnlSalir.Visible = false;
+            try
+            {
+                pnlHistoriaClinica.Visible = false;
+                pnlPlanTratamiento.Visible = true;
+                pnlTratamiento.Visible = false;
+                pnlSalir.Visible = false;
+                FrmPlanDeTratamiento frmPlanDeTratamiento = new FrmPlanDeTratamiento();
+                frmPlanDeTratamiento.txtApellidos.Text = paciente.Apellidos;
+                frmPlanDeTratamiento.txtNombres.Text = paciente.Nombres;
+                frmPlanDeTratamiento.llenarDataGridView(doctor.obtenerPlanesTratamiento(historiaClinica.NumeroHistoriaClinica));
+                frmPlanDeTratamiento.asignarDoctor(this.doctor, this.historiaClinica);
+                abrirFormHijo(frmPlanDeTratamiento);
+            }
+            catch
+            {
+                MessageBox.Show("Seleccione un paciente en la sección PACIENTES para visualizar sus Planes de Tratamiento", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnTratamiento_Click(object sender, EventArgs e)
