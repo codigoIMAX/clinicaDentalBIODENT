@@ -1,4 +1,4 @@
-﻿namespace clinicaDentalBIODENT
+﻿namespace CapaAplicacion
 {
     partial class FrmPrincipal
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace clinicaDentalBIODENT.Clases
+namespace CapaNegocio
 {
-    class Actividad
+    public class Actividad
     {
         public Actividad()
         {

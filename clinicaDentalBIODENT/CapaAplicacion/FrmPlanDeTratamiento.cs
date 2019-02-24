@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaNegocio;
-namespace clinicaDentalBIODENT
+
+namespace CapaAplicacion
 {
     public partial class FrmPlanDeTratamiento : Form
     {
