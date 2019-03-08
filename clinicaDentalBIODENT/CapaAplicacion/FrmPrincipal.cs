@@ -62,6 +62,8 @@ namespace CapaAplicacion
         {
             cpbReloj.Minimum = 0;
             cpbReloj.Maximum = 59;
+            FrmInicio frmInicio = new FrmInicio();
+            abrirFormHijo(frmInicio);
         }
         private void tmrFechaHora_Tick(object sender, EventArgs e)
          {
@@ -73,10 +75,7 @@ namespace CapaAplicacion
                 lblFecha.Text = DateTime.Now.ToString("dddd, dd MMMM");
                 lblAnio.Text = DateTime.Today.ToString("yyyy");
             }
-            catch
-            {
-
-            }
+            catch { }
         }
         private void btnPacientes_Click(object sender, EventArgs e)
         {
@@ -84,6 +83,7 @@ namespace CapaAplicacion
             btnPlanTratamiento.Visible = true;
             btnTratamiento.Visible = true;
             btnSalir.Visible = true;
+            ocultarBotonesConfiguracion();
             FrmPaciente frmPaciente = new FrmPaciente();
             DataTable tbl = doctor.obtenerPacientes();
             frmPaciente.asignarDoctor(this.doctor);
@@ -105,35 +105,12 @@ namespace CapaAplicacion
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
             ocultarElementos();
-        }
-        private void btnHistoriaClinica_MouseMove(object sender, MouseEventArgs e)
-        {
-            pnlHistoriaClinica.Visible = true;
-            pnlPlanTratamiento.Visible = false;
-            pnlTratamiento.Visible = false;
-            pnlSalir.Visible = false;
-        }
-        private void btnPlanTratamiento_MouseMove(object sender, MouseEventArgs e)
-        {
-            pnlHistoriaClinica.Visible = false;
-            pnlPlanTratamiento.Visible = true;
-            pnlTratamiento.Visible = false;
-            pnlSalir.Visible = false;
-        }
-        private void btnTratamiento_MouseMove(object sender, MouseEventArgs e)
-        {
-            pnlHistoriaClinica.Visible = false;
-            pnlPlanTratamiento.Visible = false;
-            pnlTratamiento.Visible = true;
-            pnlSalir.Visible = false;
-        }
-        private void btnSalir_MouseMove(object sender, MouseEventArgs e)
-        {
-            pnlHistoriaClinica.Visible = false;
-            pnlPlanTratamiento.Visible = false;
-            pnlTratamiento.Visible = false;
-            pnlSalir.Visible = true;
-        }
+            FrmInicio frmInicio = new FrmInicio();
+            abrirFormHijo(frmInicio);
+            btnModificarUsuario.Visible = true;
+            btnModificarContrasenia.Visible = true;
+            
+        }        
         public void abrirFormHijo(object frmHijo)
         {
             if (pnlContenedor.Controls.Count > 0)
@@ -162,6 +139,7 @@ namespace CapaAplicacion
                 pnlTratamiento.Visible = false;
                 pnlSalir.Visible = false;
                 FrmHistoriaClinica frmHistoriaClinica = new FrmHistoriaClinica();
+                AddOwnedForm(frmHistoriaClinica);
                 frmHistoriaClinica.txtApellidos.Text = paciente.Apellidos;
                 frmHistoriaClinica.txtNombres.Text = paciente.Nombres;
                 if (historiaClinica.TratamientoMedicoActual != "")
@@ -208,6 +186,7 @@ namespace CapaAplicacion
                     frmHistoriaClinica.txtCantidad.Enabled = true;
                 }
                 frmHistoriaClinica.txtAPFObservaciones.Text = historiaClinica.Antecedentes.Observaciones;
+                frmHistoriaClinica.asignarDoctor(this.doctor, this.historiaClinica);
                 abrirFormHijo(frmHistoriaClinica);
             }
             catch
@@ -244,10 +223,59 @@ namespace CapaAplicacion
 
         private void btnTratamiento_Click(object sender, EventArgs e)
         {
-            pnlHistoriaClinica.Visible = false;
-            pnlPlanTratamiento.Visible = false;
-            pnlTratamiento.Visible = true;
-            pnlSalir.Visible = false;
+            try
+            {
+                pnlHistoriaClinica.Visible = false;
+                pnlPlanTratamiento.Visible = false;
+                pnlTratamiento.Visible = true;
+                pnlSalir.Visible = false;
+                FrmDetalleTratamiento frmDetalleTratamiento = new FrmDetalleTratamiento();
+                frmDetalleTratamiento.txtApellidos.Text = paciente.Apellidos;
+                frmDetalleTratamiento.txtNombres.Text = paciente.Nombres;
+                frmDetalleTratamiento.llenarDataGridView(doctor.obtenerPlanesTratamiento(historiaClinica.NumeroHistoriaClinica));
+                frmDetalleTratamiento.asignarDoctor(this.doctor, this.historiaClinica);
+                abrirFormHijo(frmDetalleTratamiento);
+            }
+            catch
+            {
+                MessageBox.Show("Seleccione un paciente en la sección PACIENTES para visualizar el Detalle de Tratamientos", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            FrmInicio frmInicio = new FrmInicio();
+            abrirFormHijo(frmInicio);
+            ocultarElementos();
+            ocultarBotonesConfiguracion();
+        }
+        private void ocultarBotonesConfiguracion()
+        {
+            btnModificarUsuario.Visible = false;
+            btnModificarContrasenia.Visible = false;
+            pnlModificarUsuario.Visible = false;
+            pnlModificarContrasenia.Visible = false;
+        }
+
+        private void btnModificarUsuario_Click(object sender, EventArgs e)
+        {
+            pnlModificarUsuario.Visible = true;
+            pnlModificarContrasenia.Visible = false;
+            FrmCambiarUsuario frmCambiarUsuario = new FrmCambiarUsuario();
+            AddOwnedForm(frmCambiarUsuario);
+            frmCambiarUsuario.asignarDoctor(this.doctor);
+            abrirFormHijo(frmCambiarUsuario);
+        }
+
+        private void btnModificarContrasenia_Click(object sender, EventArgs e)
+        {
+            pnlModificarUsuario.Visible = false;
+            pnlModificarContrasenia.Visible = true;
+            FrmCambiarContrasenia frmCambiarContrasenia = new FrmCambiarContrasenia();
+            AddOwnedForm(frmCambiarContrasenia);
+            frmCambiarContrasenia.asignarDoctor(this.doctor);
+            abrirFormHijo(frmCambiarContrasenia);
         }
     }
 }

@@ -37,8 +37,12 @@
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pnlModificarContrasenia = new System.Windows.Forms.Panel();
             this.pnlSalir = new System.Windows.Forms.Panel();
+            this.pnlModificarUsuario = new System.Windows.Forms.Panel();
+            this.btnModificarContrasenia = new System.Windows.Forms.Button();
             this.pnlTratamiento = new System.Windows.Forms.Panel();
+            this.btnModificarUsuario = new System.Windows.Forms.Button();
             this.pnlPlanTratamiento = new System.Windows.Forms.Panel();
             this.pnlHistoriaClinica = new System.Windows.Forms.Panel();
             this.lblAnio = new System.Windows.Forms.Label();
@@ -110,6 +114,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnMinimizar
             // 
@@ -142,8 +147,12 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(216)))), ((int)(((byte)(239)))));
+            this.pnlMenu.Controls.Add(this.pnlModificarContrasenia);
             this.pnlMenu.Controls.Add(this.pnlSalir);
+            this.pnlMenu.Controls.Add(this.pnlModificarUsuario);
+            this.pnlMenu.Controls.Add(this.btnModificarContrasenia);
             this.pnlMenu.Controls.Add(this.pnlTratamiento);
+            this.pnlMenu.Controls.Add(this.btnModificarUsuario);
             this.pnlMenu.Controls.Add(this.pnlPlanTratamiento);
             this.pnlMenu.Controls.Add(this.pnlHistoriaClinica);
             this.pnlMenu.Controls.Add(this.lblAnio);
@@ -161,6 +170,15 @@
             this.pnlMenu.Size = new System.Drawing.Size(180, 665);
             this.pnlMenu.TabIndex = 2;
             // 
+            // pnlModificarContrasenia
+            // 
+            this.pnlModificarContrasenia.BackColor = System.Drawing.Color.Maroon;
+            this.pnlModificarContrasenia.Location = new System.Drawing.Point(0, 291);
+            this.pnlModificarContrasenia.Name = "pnlModificarContrasenia";
+            this.pnlModificarContrasenia.Size = new System.Drawing.Size(6, 40);
+            this.pnlModificarContrasenia.TabIndex = 18;
+            this.pnlModificarContrasenia.Visible = false;
+            // 
             // pnlSalir
             // 
             this.pnlSalir.BackColor = System.Drawing.Color.Maroon;
@@ -170,6 +188,35 @@
             this.pnlSalir.TabIndex = 15;
             this.pnlSalir.Visible = false;
             // 
+            // pnlModificarUsuario
+            // 
+            this.pnlModificarUsuario.BackColor = System.Drawing.Color.Maroon;
+            this.pnlModificarUsuario.Location = new System.Drawing.Point(0, 252);
+            this.pnlModificarUsuario.Name = "pnlModificarUsuario";
+            this.pnlModificarUsuario.Size = new System.Drawing.Size(6, 39);
+            this.pnlModificarUsuario.TabIndex = 17;
+            this.pnlModificarUsuario.Visible = false;
+            // 
+            // btnModificarContrasenia
+            // 
+            this.btnModificarContrasenia.FlatAppearance.BorderSize = 0;
+            this.btnModificarContrasenia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnModificarContrasenia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
+            this.btnModificarContrasenia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificarContrasenia.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarContrasenia.Image")));
+            this.btnModificarContrasenia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificarContrasenia.Location = new System.Drawing.Point(6, 291);
+            this.btnModificarContrasenia.Name = "btnModificarContrasenia";
+            this.btnModificarContrasenia.Size = new System.Drawing.Size(174, 40);
+            this.btnModificarContrasenia.TabIndex = 16;
+            this.btnModificarContrasenia.Text = "Modificar Contraseña";
+            this.btnModificarContrasenia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnModificarContrasenia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnModificarContrasenia.UseVisualStyleBackColor = true;
+            this.btnModificarContrasenia.Visible = false;
+            this.btnModificarContrasenia.Click += new System.EventHandler(this.btnModificarContrasenia_Click);
+            // 
             // pnlTratamiento
             // 
             this.pnlTratamiento.BackColor = System.Drawing.Color.Maroon;
@@ -178,6 +225,26 @@
             this.pnlTratamiento.Size = new System.Drawing.Size(6, 39);
             this.pnlTratamiento.TabIndex = 14;
             this.pnlTratamiento.Visible = false;
+            // 
+            // btnModificarUsuario
+            // 
+            this.btnModificarUsuario.FlatAppearance.BorderSize = 0;
+            this.btnModificarUsuario.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnModificarUsuario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
+            this.btnModificarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificarUsuario.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarUsuario.Image")));
+            this.btnModificarUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificarUsuario.Location = new System.Drawing.Point(6, 252);
+            this.btnModificarUsuario.Name = "btnModificarUsuario";
+            this.btnModificarUsuario.Size = new System.Drawing.Size(174, 40);
+            this.btnModificarUsuario.TabIndex = 15;
+            this.btnModificarUsuario.Text = "Modificar Nombre de Usuario";
+            this.btnModificarUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnModificarUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnModificarUsuario.UseVisualStyleBackColor = true;
+            this.btnModificarUsuario.Visible = false;
+            this.btnModificarUsuario.Click += new System.EventHandler(this.btnModificarUsuario_Click);
             // 
             // pnlPlanTratamiento
             // 
@@ -278,7 +345,7 @@
             this.btnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Font = new System.Drawing.Font("Baskerville Old Face", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalir.Location = new System.Drawing.Point(6, 206);
@@ -290,7 +357,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Visible = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            this.btnSalir.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnSalir_MouseMove);
             // 
             // btnTratamiento
             // 
@@ -298,7 +364,7 @@
             this.btnTratamiento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnTratamiento.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnTratamiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTratamiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTratamiento.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTratamiento.Image = ((System.Drawing.Image)(resources.GetObject("btnTratamiento.Image")));
             this.btnTratamiento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTratamiento.Location = new System.Drawing.Point(6, 167);
@@ -307,11 +373,9 @@
             this.btnTratamiento.TabIndex = 7;
             this.btnTratamiento.Text = "Detalle de Tratamiento";
             this.btnTratamiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTratamiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTratamiento.UseVisualStyleBackColor = true;
             this.btnTratamiento.Visible = false;
             this.btnTratamiento.Click += new System.EventHandler(this.btnTratamiento_Click);
-            this.btnTratamiento.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnTratamiento_MouseMove);
             // 
             // btnPlanTratamiento
             // 
@@ -319,7 +383,7 @@
             this.btnPlanTratamiento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnPlanTratamiento.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnPlanTratamiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlanTratamiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnPlanTratamiento.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlanTratamiento.Image = ((System.Drawing.Image)(resources.GetObject("btnPlanTratamiento.Image")));
             this.btnPlanTratamiento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPlanTratamiento.Location = new System.Drawing.Point(6, 128);
@@ -331,7 +395,6 @@
             this.btnPlanTratamiento.UseVisualStyleBackColor = true;
             this.btnPlanTratamiento.Visible = false;
             this.btnPlanTratamiento.Click += new System.EventHandler(this.btnPlanTratamiento_Click);
-            this.btnPlanTratamiento.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnPlanTratamiento_MouseMove);
             // 
             // btnHistoriaClinica
             // 
@@ -339,7 +402,7 @@
             this.btnHistoriaClinica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnHistoriaClinica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnHistoriaClinica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistoriaClinica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistoriaClinica.Font = new System.Drawing.Font("Baskerville Old Face", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistoriaClinica.Image = ((System.Drawing.Image)(resources.GetObject("btnHistoriaClinica.Image")));
             this.btnHistoriaClinica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHistoriaClinica.Location = new System.Drawing.Point(6, 89);
@@ -351,7 +414,6 @@
             this.btnHistoriaClinica.UseVisualStyleBackColor = true;
             this.btnHistoriaClinica.Visible = false;
             this.btnHistoriaClinica.Click += new System.EventHandler(this.btnHistoriaClinica_Click);
-            this.btnHistoriaClinica.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnHistoriaClinica_MouseMove);
             // 
             // pnlContenedor
             // 
@@ -414,5 +476,9 @@
         private System.Windows.Forms.Panel pnlTratamiento;
         private System.Windows.Forms.Panel pnlPlanTratamiento;
         private System.Windows.Forms.Panel pnlHistoriaClinica;
+        private System.Windows.Forms.Panel pnlModificarContrasenia;
+        private System.Windows.Forms.Panel pnlModificarUsuario;
+        private System.Windows.Forms.Button btnModificarContrasenia;
+        private System.Windows.Forms.Button btnModificarUsuario;
     }
 }

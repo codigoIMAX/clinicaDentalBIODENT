@@ -135,10 +135,10 @@ namespace CapaDatos
             cerrarConexion(conexion);
             return tbl;
         }
-        public static bool eliminarPlanTratamiento(int idTratamiento)
+        public static bool eliminarPlanTratamiento(int idPlanTratamiento)
         {
             SqlConnection conexion = obtenerConexion();
-            string query = "DELETE FROM tblPlanTratamiento WHERE idPlanTratamiento = " + idTratamiento;
+            string query = "DELETE FROM tblPlanTratamiento WHERE idPlanTratamiento = " + idPlanTratamiento;
             SqlCommand comando = new SqlCommand(query, conexion);
             if (comando.ExecuteNonQuery() > 0)
             {
@@ -150,6 +150,39 @@ namespace CapaDatos
                 cerrarConexion(conexion);
                 return false;
             }
+        }
+        public static string modificarNombreUsuario(string usuarioActual, string nuevoNombre)
+        {
+            string mensajeSalida;
+            SqlConnection conexion = obtenerConexion();
+            SqlCommand comando = new SqlCommand("spCambiarNombreUsuario", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@usuarioActual", usuarioActual);
+            comando.Parameters.AddWithValue("@nuevoUsuario", nuevoNombre);
+            SqlParameter salida = new SqlParameter("@mensajeSalida", SqlDbType.VarChar);
+            salida.Direction = ParameterDirection.Output;
+            comando.Parameters.Add(salida);
+            comando.ExecuteNonQuery();
+            mensajeSalida = comando.Parameters["@mensajeSalida"].Value.ToString();
+            BaseDeDato.cerrarConexion(conexion);
+            return mensajeSalida;
+        }
+        public static string modificarContrasenia(string contraseniaActual, string nuevaContrasenia, string usuario)
+        {
+            string mensajeSalida;
+            SqlConnection conexion = obtenerConexion();
+            SqlCommand comando = new SqlCommand("spCambiarContrasenia", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@contraseniaActual", contraseniaActual);
+            comando.Parameters.AddWithValue("@nuevaContrasenia", nuevaContrasenia);
+            comando.Parameters.AddWithValue("@usuario", usuario);
+            SqlParameter salida = new SqlParameter("@mensajeSalida", SqlDbType.VarChar);
+            salida.Direction = ParameterDirection.Output;
+            comando.Parameters.Add(salida);
+            comando.ExecuteNonQuery();
+            mensajeSalida = comando.Parameters["@mensajeSalida"].Value.ToString();
+            BaseDeDato.cerrarConexion(conexion);
+            return mensajeSalida;
         }
     }
 }

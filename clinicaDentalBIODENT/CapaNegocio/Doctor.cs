@@ -38,6 +38,15 @@ namespace CapaNegocio
                 return false;
             }
         }
+        public string cambiarNombreUsuario(string usuarioActual, string nuevoNombre)
+        {
+            return BaseDeDato.modificarNombreUsuario(usuarioActual, nuevoNombre);
+        }
+        public string cambiarContrasenia(string contraseniaActual, string nuevaContrasenia, string usuario)
+        {
+            return BaseDeDato.modificarContrasenia(contraseniaActual, nuevaContrasenia, usuario);
+        }
+        
         public DataTable obtenerPacientes()
         {
             return BaseDeDato.listarPacientes();
@@ -71,8 +80,7 @@ namespace CapaNegocio
         }
         public bool eliminarPaciente(string cedula)
         {
-            return BaseDeDato.eliminarPaciente(cedula);
-                
+            return BaseDeDato.eliminarPaciente(cedula);    
         }
         public bool actualizarPaciente(HistoriaClinica historiaClinica, string cedulaAnterior)
         {
@@ -303,9 +311,137 @@ namespace CapaNegocio
                 return false;
             }
         }
-        public bool eliminarPlanTratamiento(int idTratamiento)
+        public bool eliminarPlanTratamiento(int idPlanTratamiento)
         {
-            return BaseDeDato.eliminarPlanTratamiento(idTratamiento);
+            return BaseDeDato.eliminarPlanTratamiento(idPlanTratamiento);
+        }
+        public List<Actividad> llenarActividades(int idPlanTratamiento)
+        {
+            Actividad actividad;
+            List<Actividad> actividades = new List<Actividad>();
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "SELECT * FROM tblActividad WHERE idPlanTratamiento = " + idPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    actividad = new Actividad();
+                    actividad.IdActividad = reader.GetInt32(1);
+                    actividad.FechaActividad = reader.GetDateTime(2);
+                    actividad.NumeroPieza = reader.GetInt32(3);
+                    actividad.Detalle = reader.GetString(4);
+                    actividades.Add(actividad);
+                }
+            }
+            reader.Close();
+            BaseDeDato.cerrarConexion(conexion);
+            return actividades;
+        }
+        public List<Abono> llenarAbonos(int idPlanTratamiento)
+        {
+            Abono abono;
+            List<Abono> abonos = new List<Abono>();
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "SELECT * FROM tblAbono WHERE idPlanTratamiento = " + idPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    abono = new Abono();
+                    abono.IdAbono= reader.GetInt32(1);
+                    abono.FechaAbono = reader.GetDateTime(2);
+                    abono.Cantidad = Convert.ToDouble(Convert.ToString(reader.GetSqlMoney(3)));
+                    abonos.Add(abono);
+                }
+            }
+            reader.Close();
+            BaseDeDato.cerrarConexion(conexion);
+            return abonos;
+        }
+        public bool ingresarActividades(List<Actividad> actividades, int idPlanTratamiento)
+        {
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "DELETE FROM tblActividad WHERE idPlanTratamiento = " + idPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            comando.ExecuteNonQuery();
+            comando = new SqlCommand("INSERT INTO tblActividad VALUES (@idPlanTratamiento, @idActividad, @fechaActividad, @numeroPieza, @actividad)", conexion);
+            try
+            {
+                foreach (var aux in actividades)
+                {
+                    comando.Parameters.Clear();
+                    comando.Parameters.AddWithValue("@idPlanTratamiento", idPlanTratamiento);
+                    comando.Parameters.AddWithValue("@idActividad", aux.IdActividad);
+                    comando.Parameters.AddWithValue("@fechaActividad", aux.FechaActividad);
+                    comando.Parameters.AddWithValue("@numeroPieza", aux.NumeroPieza);
+                    comando.Parameters.AddWithValue("@actividad", aux.Detalle);
+                    comando.ExecuteNonQuery();
+                }
+                BaseDeDato.cerrarConexion(conexion);
+                return true;
+            }
+            catch
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+        }
+        public bool ingresarAbonos(List<Abono> abonos, int idPlanTratamiento)
+        {
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "DELETE FROM tblAbono WHERE idPlanTratamiento = " + idPlanTratamiento;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            comando.ExecuteNonQuery();
+            comando = new SqlCommand("INSERT INTO tblAbono VALUES (@idPlanTratamiento, @idAbono, @fechaAbono, @abono)", conexion);
+            try
+            {
+                foreach (var aux in abonos)
+                {
+                    comando.Parameters.Clear();
+                    comando.Parameters.AddWithValue("@idPlanTratamiento", idPlanTratamiento);
+                    comando.Parameters.AddWithValue("@idAbono", aux.IdAbono);
+                    comando.Parameters.AddWithValue("@fechaAbono", aux.FechaAbono);
+                    comando.Parameters.AddWithValue("@abono", aux.Cantidad);
+                    comando.ExecuteNonQuery();
+                }
+                BaseDeDato.cerrarConexion(conexion);
+                return true;
+            }
+            catch
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+        }
+        public List<PiezaDental> buscarPiezasDentales(int numeroHistoriaClinica)
+        {
+            PiezaDental piezaDental;
+            List<PiezaDental> piezasDentales = new List<PiezaDental>();
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "SELECT * FROM tblPiezaDental WHERE numeroHistoriaClinica = " + numeroHistoriaClinica;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    piezaDental = new PiezaDental();
+                    piezaDental.NumeroPieza = reader.GetInt32(1);
+                    piezaDental.ColorArriba = reader.GetString(2);
+                    piezaDental.ColorDerecha = reader.GetString(3);
+                    piezaDental.ColorAbajo = reader.GetString(4);
+                    piezaDental.ColorIzquierda = reader.GetString(5);
+                    piezaDental.ColorCentro = reader.GetString(6);
+                    piezasDentales.Add(piezaDental);
+                }
+            }
+            reader.Close();
+            BaseDeDato.cerrarConexion(conexion);
+            return piezasDentales;
         }
         public int calcularEdad(DateTime fechaNacimiento)
         {

@@ -13,14 +13,14 @@ namespace CapaAplicacion
 {
     public partial class FrmPlanDeTratamiento : Form
     {
-        Doctor doctor;
+        Doctor          doctor;
+        Detalle         detalle;
         PlanTratamiento planTratamiento;
-        Detalle detalle;
-        List<Detalle> detalles = new List<Detalle>();
         HistoriaClinica historiaClinica;
-        int idTratamiento;
-        int idDetalle = 1;
-        bool editar = false;
+        List<Detalle>   detalles = new List<Detalle>();
+        int  idTratamiento;
+        int  idDetalle = 1;
+        bool editar    = false;
         public FrmPlanDeTratamiento()
         {
             InitializeComponent();

@@ -85,6 +85,7 @@ actividad varchar(100),
 GO
 CREATE TABLE tblAbono(
 idPlanTratamiento int FOREIGN KEY REFERENCES tblPlanTratamiento (idPlanTratamiento) ON UPDATE CASCADE ON DELETE CASCADE,
+idAbono int,
 fechaAbono date,
 abono money
 )
@@ -174,16 +175,58 @@ CREATE PROCEDURE spActualizarPaciente
 	END CATCH
 END
 GO
+CREATE PROCEDURE spCambiarContrasenia
+@contraseniaActual varchar(50), @nuevaContrasenia varchar(50), @usuario varchar(50), @mensajeSalida varchar(80) OUTPUT AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			IF EXISTS (SELECT usuario FROM tblDoctor WHERE usuario = @usuario) BEGIN
+				IF (SELECT contrasenia FROM tblDoctor WHERE usuario = @usuario) = @contraseniaActual BEGIN
+					UPDATE tblDoctor SET contrasenia = @nuevaContrasenia WHERE usuario = @usuario
+					SET @mensajeSalida = 'La contraseña ha sido modificada con éxito.'
+				END ELSE BEGIN
+					SET @mensajeSalida = 'La contraseña actual no coincide. \n Vuelva a intentarlo.'
+				END
+			END ELSE BEGIN
+				SET @mensajeSalida = 'El usuario no existe.'
+			END
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		SET @mensajeSalida = 'Error al cambiar la contraseña. \n Inténtelo más tarde.'
+		ROLLBACK TRANSACTION
+	END CATCH
+END
+GO
+CREATE PROCEDURE spCambiarNombreUsuario
+@usuarioActual varchar(50), @nuevoUsuario varchar(50), @mensajeSalida varchar(80) OUTPUT AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			IF EXISTS (SELECT usuario FROM tblDoctor WHERE usuario = @usuarioActual) BEGIN
+				UPDATE tblDoctor SET usuario = @nuevoUsuario WHERE usuario = @usuarioActual
+				SET @mensajeSalida = 'El nombre de usuario ha sido modificado con éxito.'
+			END ELSE BEGIN
+				SET @mensajeSalida = 'El usuario no existe.'
+			END
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		SET @mensajeSalida = 'Error al cambiar el nombre de usuario. \n Inténtelo más tarde.'
+		ROLLBACK TRANSACTION
+	END CATCH
+END
+GO
 
+DECLARE @salida varchar(80)
+EXECUTE spCambiarNombreUsuario 'manuelG', 'drManuelGuerrero', @salida OUTPUT
+PRINT @salida
 DECLARE @salida bit
 EXECUTE spIngresarPaciente '1716116809', 'Alejandro Esteban', 'Guerrero Tipán', '21/08/1994', 0, 'Estudiante Universitario', 'Soltero',
 'De Los Guabos Pasaje N48A E10-37 El Inca', '2402538', '0987858621', 'alejo_guerrero94@hotmail.com', 'N/A', 'N/A', 'S/N', 0, 0, 0, 0,
 0, 0, 0, 0, 0, 0, 'No toma', 0, 'No fuma', 'S/N', @salida OUTPUT
 PRINT @salida
 GO
+SELECT * FROM tblDoctor
 SELECT * FROM tblHistoriaClinica
 SELECT * FROM tblHistoriaClinica INNER JOIN tblAntecedentePF ON tblHistoriaClinica.numeroHistoriaClinica = tblAntecedentePF.numeroHistoriaClinica WHERE tblHistoriaClinica.cedulaPaciente = '0503628109'
-SELECT * FROM tblAntecedentePF
-SELECT * FROM tblPlanTratamiento
-SELECT * FROM tblDetalle
-SELECT TOP 1 numeroHistoriaClinica FROM tblHistoriaClinica ORDER BY numeroHistoriaClinica DESC
+SELECT * FROM tblPiezaDental WHERE numeroHistoriaClinica = 1
+

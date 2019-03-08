@@ -38,6 +38,7 @@ namespace CapaAplicacion
                 {
                     paciente = doctor.buscarPaciente(dgvPacientes.Rows[e.RowIndex].Cells[1].Value.ToString());
                     historiaClinica = doctor.buscarHistoriaClinica(paciente.Cedula);
+                    historiaClinica.PiezasDentales = doctor.buscarPiezasDentales(historiaClinica.NumeroHistoriaClinica);
                     historiaClinica.Paciente = paciente;
                     btnModificar.Enabled = true;
                     btnEliminar.Enabled = true;
