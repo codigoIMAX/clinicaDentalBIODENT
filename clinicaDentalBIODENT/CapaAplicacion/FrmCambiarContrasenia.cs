@@ -57,5 +57,27 @@ namespace CapaAplicacion
             else
                 MessageBox.Show("Ingrese la contraseña actual.", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
+
+        private void txtContraseniaActual_Enter(object sender, EventArgs e)
+        {
+            txtContraseniaActual.PasswordChar = '*';
+        }
+
+        private void txtNuevaContrasenia_Enter(object sender, EventArgs e)
+        {
+            txtNuevaContrasenia.PasswordChar = '*';
+        }
+
+        private void txtRepeticionContrasenia_Enter(object sender, EventArgs e)
+        {
+            txtRepeticionContrasenia.PasswordChar = '*';
+        }
+
+        private void btnMostrar_Click(object sender, EventArgs e)
+        {
+            txtContraseniaActual.PasswordChar = '\0';
+            txtNuevaContrasenia.PasswordChar = '\0';
+            txtRepeticionContrasenia.PasswordChar = '\0';
+        }
     }
 }

@@ -443,18 +443,51 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return piezasDentales;
         }
+        public bool actualizarHistoriaClinica(HistoriaClinica historiaClinica)
+        {
+            SqlConnection conexion = BaseDeDato.obtenerConexion();
+            string query = "UPDATE tblHistoriaClinica SET tratamientoMedicoActual = '" + historiaClinica.TratamientoMedicoActual + "', tomaMedicamentoActual = '" + 
+                historiaClinica.TomaMedicamentoActual + "', observaciones = '" + historiaClinica.Observaciones + "' WHERE numeroHistoriaClinica = " + historiaClinica.NumeroHistoriaClinica;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            if(comando.ExecuteNonQuery() > 0)
+            {
+                query = "UPDATE tblAntecedentePF SET alergiaAntibiotico = " + Convert.ToByte(historiaClinica.Antecedentes.AlergiaAntibiotico) + ", alergiaAnestesia = " + Convert.ToByte(historiaClinica.Antecedentes.AlergiaAnestesia) +
+                    ", hemorragia = " + Convert.ToByte(historiaClinica.Antecedentes.Hemorragia) + ", sida = " + Convert.ToByte(historiaClinica.Antecedentes.Sida) + ", tuberculosis = " + Convert.ToByte(historiaClinica.Antecedentes.Tuberculosis) +
+                    ", diabetes = " + Convert.ToByte(historiaClinica.Antecedentes.Diabetes) + ", asma = " + Convert.ToByte(historiaClinica.Antecedentes.Asma) + ", hipertension = " + Convert.ToByte(historiaClinica.Antecedentes.Hipertension) +
+                    ", enfermedadCardiaca = " + Convert.ToByte(historiaClinica.Antecedentes.EnfermedadCardiaca) + ", bebidasAlcoholicas = " + Convert.ToByte(historiaClinica.Antecedentes.BebidasAlcoholicas) + ", frecuencia = '" +
+                    historiaClinica.Antecedentes.Frecuencia + "', fuma = " + Convert.ToByte(historiaClinica.Antecedentes.Fuma) + ", numeroCigarros = '" + historiaClinica.Antecedentes.NumeroCigarros + "', observaciones = '" +
+                    historiaClinica.Antecedentes.Observaciones + "' WHERE numeroHistoriaClinica = " + historiaClinica.NumeroHistoriaClinica;
+                comando = new SqlCommand(query, conexion);
+                if(comando.ExecuteNonQuery() > 0)
+                {
+                    foreach(var aux in historiaClinica.PiezasDentales)
+                    {
+                        query = "UPDATE tblPiezaDental SET colorArriba = '" + aux.ColorArriba + "', colorDerecha = '" + aux.ColorDerecha + "', colorAbajo = '" + aux.ColorAbajo + "', colorIzquierda = '" + 
+                            aux.ColorIzquierda + "', colorCentro = '" + aux.ColorCentro + "' WHERE numeroHistoriaClinica = " + historiaClinica.NumeroHistoriaClinica + " AND numeroPieza = " + aux.NumeroPieza;
+                        comando = new SqlCommand(query, conexion);
+                        comando.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+                else
+                {
+                    BaseDeDato.cerrarConexion(conexion);
+                    return false;
+                }
+            }
+            else
+            {
+                BaseDeDato.cerrarConexion(conexion);
+                return false;
+            }
+        }
         public int calcularEdad(DateTime fechaNacimiento)
         {
             int edad;
             if (DateTime.Today.Month < fechaNacimiento.Month)
-                edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year) + 1;
+                edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year) - 1;
             else
-            {
-                if (DateTime.Today.Day < fechaNacimiento.Day)
-                    edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year) + 1;
-                else
-                    edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year);
-            }
+                edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year);
             return edad;
         }
     }

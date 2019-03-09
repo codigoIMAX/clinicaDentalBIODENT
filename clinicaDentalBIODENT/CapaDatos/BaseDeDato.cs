@@ -56,14 +56,9 @@ namespace CapaDatos
         {
             int edad;
             if (DateTime.Today.Month < fechaNacimiento.Month)
-                edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year) + 1;
+                edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year) - 1;
             else
-            {
-                if (DateTime.Today.Day < fechaNacimiento.Day)
-                    edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year) + 1;
-                else
-                    edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year);
-            }
+                edad = Convert.ToInt16(DateTime.Today.Year) - Convert.ToInt16(fechaNacimiento.Year);
             return edad;
         }
         public static bool eliminarPaciente(string cedula)
@@ -159,7 +154,7 @@ namespace CapaDatos
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@usuarioActual", usuarioActual);
             comando.Parameters.AddWithValue("@nuevoUsuario", nuevoNombre);
-            SqlParameter salida = new SqlParameter("@mensajeSalida", SqlDbType.VarChar);
+            SqlParameter salida = new SqlParameter("@mensajeSalida", SqlDbType.VarChar, 80);
             salida.Direction = ParameterDirection.Output;
             comando.Parameters.Add(salida);
             comando.ExecuteNonQuery();
@@ -176,7 +171,7 @@ namespace CapaDatos
             comando.Parameters.AddWithValue("@contraseniaActual", contraseniaActual);
             comando.Parameters.AddWithValue("@nuevaContrasenia", nuevaContrasenia);
             comando.Parameters.AddWithValue("@usuario", usuario);
-            SqlParameter salida = new SqlParameter("@mensajeSalida", SqlDbType.VarChar);
+            SqlParameter salida = new SqlParameter("@mensajeSalida", SqlDbType.VarChar, 80);
             salida.Direction = ParameterDirection.Output;
             comando.Parameters.Add(salida);
             comando.ExecuteNonQuery();

@@ -39,12 +39,10 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.chbxFuma = new System.Windows.Forms.CheckBox();
-            this.shapeContainer4 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.pnlBebidasAlcoholicas = new System.Windows.Forms.Panel();
             this.txtFrecuencia = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.chbxBebidasAlcoholicas = new System.Windows.Forms.CheckBox();
-            this.shapeContainer5 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.chbxEnfCardiaca = new System.Windows.Forms.CheckBox();
             this.chbxHipertension = new System.Windows.Forms.CheckBox();
             this.chbxAsma = new System.Windows.Forms.CheckBox();
@@ -400,6 +398,12 @@
             this.p75I = new System.Windows.Forms.PictureBox();
             this.p75Ab = new System.Windows.Forms.PictureBox();
             this.p75A = new System.Windows.Forms.PictureBox();
+            this.lineShape3 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.lineShape4 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.lineShape5 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.shapeContainer4 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape6 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.shapeContainer5 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlAntecedentes.SuspendLayout();
             this.pnlFumar.SuspendLayout();
@@ -760,7 +764,7 @@
             this.pnlFumar.Controls.Add(this.txtCantidad);
             this.pnlFumar.Controls.Add(this.label20);
             this.pnlFumar.Controls.Add(this.chbxFuma);
-            this.pnlFumar.Controls.Add(this.shapeContainer4);
+            this.pnlFumar.Controls.Add(this.shapeContainer5);
             this.pnlFumar.Location = new System.Drawing.Point(8, 135);
             this.pnlFumar.Name = "pnlFumar";
             this.pnlFumar.Size = new System.Drawing.Size(373, 55);
@@ -800,22 +804,13 @@
             this.chbxFuma.UseVisualStyleBackColor = true;
             this.chbxFuma.CheckedChanged += new System.EventHandler(this.chbxFuma_CheckedChanged);
             // 
-            // shapeContainer4
-            // 
-            this.shapeContainer4.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer4.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer4.Name = "shapeContainer4";
-            this.shapeContainer4.Size = new System.Drawing.Size(371, 53);
-            this.shapeContainer4.TabIndex = 29;
-            this.shapeContainer4.TabStop = false;
-            // 
             // pnlBebidasAlcoholicas
             // 
             this.pnlBebidasAlcoholicas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBebidasAlcoholicas.Controls.Add(this.txtFrecuencia);
             this.pnlBebidasAlcoholicas.Controls.Add(this.label19);
             this.pnlBebidasAlcoholicas.Controls.Add(this.chbxBebidasAlcoholicas);
-            this.pnlBebidasAlcoholicas.Controls.Add(this.shapeContainer5);
+            this.pnlBebidasAlcoholicas.Controls.Add(this.shapeContainer4);
             this.pnlBebidasAlcoholicas.Location = new System.Drawing.Point(7, 74);
             this.pnlBebidasAlcoholicas.Name = "pnlBebidasAlcoholicas";
             this.pnlBebidasAlcoholicas.Size = new System.Drawing.Size(373, 55);
@@ -854,15 +849,6 @@
             this.chbxBebidasAlcoholicas.Text = "Bebidas Alcohólicas";
             this.chbxBebidasAlcoholicas.UseVisualStyleBackColor = true;
             this.chbxBebidasAlcoholicas.CheckedChanged += new System.EventHandler(this.chbxBebidasAlcoholicas_CheckedChanged);
-            // 
-            // shapeContainer5
-            // 
-            this.shapeContainer5.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer5.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer5.Name = "shapeContainer5";
-            this.shapeContainer5.Size = new System.Drawing.Size(371, 53);
-            this.shapeContainer5.TabIndex = 29;
-            this.shapeContainer5.TabStop = false;
             // 
             // chbxEnfCardiaca
             // 
@@ -1074,6 +1060,8 @@
             this.shapeContainer3.Location = new System.Drawing.Point(0, 0);
             this.shapeContainer3.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer3.Name = "shapeContainer3";
+            this.shapeContainer3.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape4});
             this.shapeContainer3.Size = new System.Drawing.Size(340, 60);
             this.shapeContainer3.TabIndex = 27;
             this.shapeContainer3.TabStop = false;
@@ -1156,6 +1144,8 @@
             this.shapeContainer2.Location = new System.Drawing.Point(0, 0);
             this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape3});
             this.shapeContainer2.Size = new System.Drawing.Size(340, 60);
             this.shapeContainer2.TabIndex = 27;
             this.shapeContainer2.TabStop = false;
@@ -5043,6 +5033,60 @@
             this.p75A.TabStop = false;
             this.p75A.Click += new System.EventHandler(this.p75A_Click);
             // 
+            // lineShape3
+            // 
+            this.lineShape3.Name = "lineShape3";
+            this.lineShape3.X1 = 59;
+            this.lineShape3.X2 = 330;
+            this.lineShape3.Y1 = 51;
+            this.lineShape3.Y2 = 51;
+            // 
+            // lineShape4
+            // 
+            this.lineShape4.Name = "lineShape4";
+            this.lineShape4.X1 = 58;
+            this.lineShape4.X2 = 329;
+            this.lineShape4.Y1 = 52;
+            this.lineShape4.Y2 = 52;
+            // 
+            // lineShape5
+            // 
+            this.lineShape5.Name = "lineShape5";
+            this.lineShape5.X1 = 83;
+            this.lineShape5.X2 = 354;
+            this.lineShape5.Y1 = 48;
+            this.lineShape5.Y2 = 48;
+            // 
+            // shapeContainer4
+            // 
+            this.shapeContainer4.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer4.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer4.Name = "shapeContainer4";
+            this.shapeContainer4.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape5});
+            this.shapeContainer4.Size = new System.Drawing.Size(371, 53);
+            this.shapeContainer4.TabIndex = 29;
+            this.shapeContainer4.TabStop = false;
+            // 
+            // lineShape6
+            // 
+            this.lineShape6.Name = "lineShape6";
+            this.lineShape6.X1 = 81;
+            this.lineShape6.X2 = 352;
+            this.lineShape6.Y1 = 48;
+            this.lineShape6.Y2 = 48;
+            // 
+            // shapeContainer5
+            // 
+            this.shapeContainer5.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer5.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer5.Name = "shapeContainer5";
+            this.shapeContainer5.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape6});
+            this.shapeContainer5.Size = new System.Drawing.Size(371, 53);
+            this.shapeContainer5.TabIndex = 29;
+            this.shapeContainer5.TabStop = false;
+            // 
             // FrmHistoriaClinica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5673,12 +5717,10 @@
         public System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label20;
         public System.Windows.Forms.CheckBox chbxFuma;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer4;
         private System.Windows.Forms.Panel pnlBebidasAlcoholicas;
         public System.Windows.Forms.TextBox txtFrecuencia;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.CheckBox chbxBebidasAlcoholicas;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer5;
         public System.Windows.Forms.CheckBox chbxEnfCardiaca;
         public System.Windows.Forms.CheckBox chbxHipertension;
         public System.Windows.Forms.CheckBox chbxAsma;
@@ -6034,5 +6076,11 @@
         private System.Windows.Forms.PictureBox p75I;
         private System.Windows.Forms.PictureBox p75Ab;
         private System.Windows.Forms.PictureBox p75A;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer5;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape6;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer4;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape5;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape4;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape3;
     }
 }

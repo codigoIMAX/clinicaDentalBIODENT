@@ -56,6 +56,7 @@
             this.btnHistoriaClinica = new System.Windows.Forms.Button();
             this.pnlContenedor = new System.Windows.Forms.Panel();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
+            this.btnAcercaDe = new System.Windows.Forms.Button();
             this.pnlBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenu.SuspendLayout();
@@ -147,6 +148,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(216)))), ((int)(((byte)(239)))));
+            this.pnlMenu.Controls.Add(this.btnAcercaDe);
             this.pnlMenu.Controls.Add(this.pnlModificarContrasenia);
             this.pnlMenu.Controls.Add(this.pnlSalir);
             this.pnlMenu.Controls.Add(this.pnlModificarUsuario);
@@ -173,7 +175,7 @@
             // pnlModificarContrasenia
             // 
             this.pnlModificarContrasenia.BackColor = System.Drawing.Color.Maroon;
-            this.pnlModificarContrasenia.Location = new System.Drawing.Point(0, 291);
+            this.pnlModificarContrasenia.Location = new System.Drawing.Point(0, 128);
             this.pnlModificarContrasenia.Name = "pnlModificarContrasenia";
             this.pnlModificarContrasenia.Size = new System.Drawing.Size(6, 40);
             this.pnlModificarContrasenia.TabIndex = 18;
@@ -191,7 +193,7 @@
             // pnlModificarUsuario
             // 
             this.pnlModificarUsuario.BackColor = System.Drawing.Color.Maroon;
-            this.pnlModificarUsuario.Location = new System.Drawing.Point(0, 252);
+            this.pnlModificarUsuario.Location = new System.Drawing.Point(0, 89);
             this.pnlModificarUsuario.Name = "pnlModificarUsuario";
             this.pnlModificarUsuario.Size = new System.Drawing.Size(6, 39);
             this.pnlModificarUsuario.TabIndex = 17;
@@ -206,7 +208,7 @@
             this.btnModificarContrasenia.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificarContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarContrasenia.Image")));
             this.btnModificarContrasenia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarContrasenia.Location = new System.Drawing.Point(6, 291);
+            this.btnModificarContrasenia.Location = new System.Drawing.Point(6, 128);
             this.btnModificarContrasenia.Name = "btnModificarContrasenia";
             this.btnModificarContrasenia.Size = new System.Drawing.Size(174, 40);
             this.btnModificarContrasenia.TabIndex = 16;
@@ -235,7 +237,7 @@
             this.btnModificarUsuario.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificarUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarUsuario.Image")));
             this.btnModificarUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarUsuario.Location = new System.Drawing.Point(6, 252);
+            this.btnModificarUsuario.Location = new System.Drawing.Point(6, 89);
             this.btnModificarUsuario.Name = "btnModificarUsuario";
             this.btnModificarUsuario.Size = new System.Drawing.Size(174, 40);
             this.btnModificarUsuario.TabIndex = 15;
@@ -429,6 +431,24 @@
             this.tmrFechaHora.Interval = 1000;
             this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
             // 
+            // btnAcercaDe
+            // 
+            this.btnAcercaDe.FlatAppearance.BorderSize = 0;
+            this.btnAcercaDe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnAcercaDe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
+            this.btnAcercaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcercaDe.Font = new System.Drawing.Font("Baskerville Old Face", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcercaDe.Image = ((System.Drawing.Image)(resources.GetObject("btnAcercaDe.Image")));
+            this.btnAcercaDe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAcercaDe.Location = new System.Drawing.Point(3, 363);
+            this.btnAcercaDe.Name = "btnAcercaDe";
+            this.btnAcercaDe.Size = new System.Drawing.Size(174, 40);
+            this.btnAcercaDe.TabIndex = 19;
+            this.btnAcercaDe.Text = "Acerca de";
+            this.btnAcercaDe.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAcercaDe.UseVisualStyleBackColor = true;
+            this.btnAcercaDe.Click += new System.EventHandler(this.btnAcercaDe_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,5 +500,6 @@
         private System.Windows.Forms.Panel pnlModificarUsuario;
         private System.Windows.Forms.Button btnModificarContrasenia;
         private System.Windows.Forms.Button btnModificarUsuario;
+        private System.Windows.Forms.Button btnAcercaDe;
     }
 }

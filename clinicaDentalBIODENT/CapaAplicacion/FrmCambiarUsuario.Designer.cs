@@ -44,6 +44,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(61, 268);
             this.pictureBox1.Name = "pictureBox1";
@@ -55,9 +56,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Lucida Calligraphy", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(154)))), ((int)(((byte)(152)))));
-            this.label1.Location = new System.Drawing.Point(99, 31);
+            this.label1.Location = new System.Drawing.Point(99, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(802, 52);
             this.label1.TabIndex = 1;
@@ -65,6 +67,7 @@
             // 
             // pnlTextos
             // 
+            this.pnlTextos.BackColor = System.Drawing.Color.Transparent;
             this.pnlTextos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTextos.Controls.Add(this.txtNuevoNombre);
             this.pnlTextos.Controls.Add(this.txtUsuarioActual);
@@ -119,12 +122,13 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(154)))), ((int)(((byte)(152)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
+            this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Baskerville Old Face", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnGuardar.ForeColor = System.Drawing.Color.Black;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.Location = new System.Drawing.Point(307, 570);
@@ -133,17 +137,18 @@
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(154)))), ((int)(((byte)(152)))));
+            this.btnCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Baskerville Old Face", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(758, 570);
@@ -152,7 +157,7 @@
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmCambiarUsuario
@@ -160,6 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1000, 665);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);

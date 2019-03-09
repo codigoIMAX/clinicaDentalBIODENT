@@ -55,22 +55,22 @@ namespace CapaAplicacion
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             Doctor doctor = new Doctor(txtUsuario.Text, txtContrasenia.Text);
-            //if (doctor.validarDoctor())
-            //{
+            if (doctor.validarDoctor())
+            {
                 MessageBox.Show("Bienvenid@ al sistema", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FrmPrincipal frmPrincipal = new FrmPrincipal();
                 frmPrincipal.asignarDoctor(doctor);
                 desplazar();
                 frmPrincipal.Show();
                 this.Hide();
-            //}
-            /*else
+            }
+            else
             {
                 MessageBox.Show("Usuario y/o Contraseña incorrectos", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Text = "Usuario";
                 txtContrasenia.Text = "Contraseña";
                 txtContrasenia.PasswordChar = '\0';
-            }*/
+            }
         }
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -133,6 +133,15 @@ namespace CapaAplicacion
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void txtContrasenia_Enter(object sender, EventArgs e)
+        {
+            if (txtContrasenia.Text == "Contraseña")
+            {
+                txtContrasenia.Text = "";
+                txtContrasenia.PasswordChar = '*';
+            }
         }
     }
 }

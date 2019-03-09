@@ -297,24 +297,5 @@ namespace CapaAplicacion
             catch { }
 
         }
-        /*
-* SqlCommand query = new SqlCommand("Insert INTO tbl VALUES (@numero, @nombre, @fecha)", conexion)
-* conexion.open()
-* try{
-*      foreach(DataGridViewRow row in dgvTratamientos.Rows){
-*          query.Parameters.Clear();
-*          query.Parameters.AddWithValue("@numero", ConvertToInt32(row.Cells["clmNumero"].Value));
-*          query.Parameters.AddWithValue("@nombre", ConvertToString(row.Cells["clmNombre"].Value));
-*          query.ExecuteNonQuery();
-*      }
-*      MessasgeBox("Datos agregados");
-* }
-* catch(Exception ex){
-*  MessaBox("Error al agregar")
-* }
-* finally{
-*  conexion.Close();
-* }
-*/
     }
 }

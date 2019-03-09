@@ -15,7 +15,6 @@ namespace CapaAplicacion
     public partial class FrmHistoriaClinica : Form
     {
         Doctor            doctor;
-        PiezaDental       piezaDental;
         AntecedentePF     antecedentePF;
         HistoriaClinica   historiaClinica;
         List<PictureBox>  pictures        = new List<PictureBox>();
@@ -96,11 +95,13 @@ namespace CapaAplicacion
 
         private void rdbTNo_CheckedChanged(object sender, EventArgs e)
         {
+            txtMotivo.Text = "";
             txtMotivo.Enabled = false;
         }
 
         private void rdbMNo_CheckedChanged(object sender, EventArgs e)
         {
+            txtMedicamento.Text = "";
             txtMedicamento.Enabled = false;
         }
 
@@ -109,7 +110,10 @@ namespace CapaAplicacion
             if (chbxBebidasAlcoholicas.Checked)
                 txtFrecuencia.Enabled = true;
             else
+            {
+                txtFrecuencia.Text = "";
                 txtFrecuencia.Enabled = false;
+            }
         }
 
         private void chbxFuma_CheckedChanged(object sender, EventArgs e)
@@ -117,7 +121,10 @@ namespace CapaAplicacion
             if (chbxFuma.Checked)
                 txtCantidad.Enabled = true;
             else
+            {
+                txtCantidad.Text = "";
                 txtCantidad.Enabled = false;
+            }
         }
 
         
@@ -939,507 +946,406 @@ namespace CapaAplicacion
         {
             p48I.BackColor = Color.FromName(color);
         }
-
         private void p51A_Click(object sender, EventArgs e)
         {
             p51A.BackColor = Color.FromName(color);
         }
-
         private void p51Ab_Click(object sender, EventArgs e)
         {
             p51Ab.BackColor = Color.FromName(color);
         }
-
         private void p51C_Click(object sender, EventArgs e)
         {
             p51C.BackColor = Color.FromName(color);
         }
-
         private void p51D_Click(object sender, EventArgs e)
         {
             p51D.BackColor = Color.FromName(color);
         }
-
         private void p51I_Click(object sender, EventArgs e)
         {
             p51I.BackColor = Color.FromName(color);
         }
-
         private void p52A_Click(object sender, EventArgs e)
         {
             p52A.BackColor = Color.FromName(color);
         }
-
         private void p52Ab_Click(object sender, EventArgs e)
         {
             p52Ab.BackColor = Color.FromName(color);
         }
-
         private void p52C_Click(object sender, EventArgs e)
         {
             p52C.BackColor = Color.FromName(color);
         }
-
         private void p52D_Click(object sender, EventArgs e)
         {
             p52D.BackColor = Color.FromName(color);
         }
-
         private void p52I_Click(object sender, EventArgs e)
         {
             p52I.BackColor = Color.FromName(color);
         }
-
         private void p53A_Click(object sender, EventArgs e)
         {
             p53A.BackColor = Color.FromName(color);
         }
-
         private void p53Ab_Click(object sender, EventArgs e)
         {
             p53Ab.BackColor = Color.FromName(color);
         }
-
         private void p53C_Click(object sender, EventArgs e)
         {
             p53C.BackColor = Color.FromName(color);
         }
-
         private void p53D_Click(object sender, EventArgs e)
         {
             p53D.BackColor = Color.FromName(color);
         }
-
         private void p53I_Click(object sender, EventArgs e)
         {
             p53I.BackColor = Color.FromName(color);
         }
-
         private void p54A_Click(object sender, EventArgs e)
         {
             p54A.BackColor = Color.FromName(color);
         }
-
         private void p54Ab_Click(object sender, EventArgs e)
         {
             p54Ab.BackColor = Color.FromName(color);
         }
-
         private void p54C_Click(object sender, EventArgs e)
         {
             p54C.BackColor = Color.FromName(color);
         }
-
         private void p54D_Click(object sender, EventArgs e)
         {
             p54D.BackColor = Color.FromName(color);
         }
-
         private void p54I_Click(object sender, EventArgs e)
         {
             p54I.BackColor = Color.FromName(color);
         }
-
         private void p55A_Click(object sender, EventArgs e)
         {
             p55A.BackColor = Color.FromName(color);
         }
-
         private void p55Ab_Click(object sender, EventArgs e)
         {
             p55Ab.BackColor = Color.FromName(color);
         }
-
         private void p55C_Click(object sender, EventArgs e)
         {
             p55C.BackColor = Color.FromName(color);
         }
-
         private void p55D_Click(object sender, EventArgs e)
         {
             p55D.BackColor = Color.FromName(color);
         }
-
         private void p55I_Click(object sender, EventArgs e)
         {
             p55I.BackColor = Color.FromName(color);
         }
-
         private void p61A_Click(object sender, EventArgs e)
         {
             p61A.BackColor = Color.FromName(color);
         }
-
         private void p61Ab_Click(object sender, EventArgs e)
         {
             p61Ab.BackColor = Color.FromName(color);
         }
-
         private void p61C_Click(object sender, EventArgs e)
         {
             p61C.BackColor = Color.FromName(color);
         }
-
         private void p61D_Click(object sender, EventArgs e)
         {
             p61D.BackColor = Color.FromName(color);
         }
-
         private void p61I_Click(object sender, EventArgs e)
         {
             p61I.BackColor = Color.FromName(color);
         }
-
         private void p62A_Click(object sender, EventArgs e)
         {
             p62A.BackColor = Color.FromName(color);
         }
-
         private void p62Ab_Click(object sender, EventArgs e)
         {
             p62Ab.BackColor = Color.FromName(color);
         }
-
         private void p62C_Click(object sender, EventArgs e)
         {
             p62C.BackColor = Color.FromName(color);
         }
-
         private void p62D_Click(object sender, EventArgs e)
         {
             p62D.BackColor = Color.FromName(color);
         }
-
         private void p62I_Click(object sender, EventArgs e)
         {
             p62I.BackColor = Color.FromName(color);
         }
-
         private void p63A_Click(object sender, EventArgs e)
         {
             p63A.BackColor = Color.FromName(color);
         }
-
         private void p63Ab_Click(object sender, EventArgs e)
         {
             p63Ab.BackColor = Color.FromName(color);
         }
-
         private void p63C_Click(object sender, EventArgs e)
         {
             p63C.BackColor = Color.FromName(color);
         }
-
         private void p63D_Click(object sender, EventArgs e)
         {
             p63D.BackColor = Color.FromName(color);
         }
-
         private void p63I_Click(object sender, EventArgs e)
         {
             p63I.BackColor = Color.FromName(color);
         }
-
         private void p64A_Click(object sender, EventArgs e)
         {
             p64A.BackColor = Color.FromName(color);
         }
-
         private void p64Ab_Click(object sender, EventArgs e)
         {
             p64Ab.BackColor = Color.FromName(color);
         }
-
         private void p64C_Click(object sender, EventArgs e)
         {
             p64C.BackColor = Color.FromName(color);
         }
-
         private void p64D_Click(object sender, EventArgs e)
         {
             p64D.BackColor = Color.FromName(color);
         }
-
         private void p64I_Click(object sender, EventArgs e)
         {
             p64I.BackColor = Color.FromName(color);
         }
-
         private void p65A_Click(object sender, EventArgs e)
         {
             p65A.BackColor = Color.FromName(color);
         }
-
         private void p65Ab_Click(object sender, EventArgs e)
         {
             p65Ab.BackColor = Color.FromName(color);
         }
-
         private void p65C_Click(object sender, EventArgs e)
         {
             p65C.BackColor = Color.FromName(color);
         }
-
         private void p65D_Click(object sender, EventArgs e)
         {
             p65D.BackColor = Color.FromName(color);
         }
-
         private void p65I_Click(object sender, EventArgs e)
         {
             p65I.BackColor = Color.FromName(color);
         }
-
         private void p71A_Click(object sender, EventArgs e)
         {
             p71A.BackColor = Color.FromName(color);
         }
-
         private void p71Ab_Click(object sender, EventArgs e)
         {
             p71Ab.BackColor = Color.FromName(color);
         }
-
         private void p71C_Click(object sender, EventArgs e)
         {
             p71C.BackColor = Color.FromName(color);
         }
-
         private void p71D_Click(object sender, EventArgs e)
         {
             p71D.BackColor = Color.FromName(color);
         }
-
         private void p71I_Click(object sender, EventArgs e)
         {
             p71I.BackColor = Color.FromName(color);
         }
-
         private void p72A_Click(object sender, EventArgs e)
         {
             p72A.BackColor = Color.FromName(color);
         }
-
         private void p72Ab_Click(object sender, EventArgs e)
         {
             p72Ab.BackColor = Color.FromName(color);
         }
-
         private void p72C_Click(object sender, EventArgs e)
         {
             p72C.BackColor = Color.FromName(color);
         }
-
         private void p72D_Click(object sender, EventArgs e)
         {
             p72D.BackColor = Color.FromName(color);
         }
-
         private void p72I_Click(object sender, EventArgs e)
         {
             p72I.BackColor = Color.FromName(color);
         }
-
         private void p73A_Click(object sender, EventArgs e)
         {
             p73A.BackColor = Color.FromName(color);
         }
-
         private void p73Ab_Click(object sender, EventArgs e)
         {
             p73Ab.BackColor = Color.FromName(color);
         }
-
         private void p73C_Click(object sender, EventArgs e)
         {
             p73C.BackColor = Color.FromName(color);
         }
-
         private void p73D_Click(object sender, EventArgs e)
         {
             p73D.BackColor = Color.FromName(color);
         }
-
         private void p73I_Click(object sender, EventArgs e)
         {
             p73I.BackColor = Color.FromName(color);
         }
-
         private void p74A_Click(object sender, EventArgs e)
         {
             p74A.BackColor = Color.FromName(color);
         }
-
         private void p74Ab_Click(object sender, EventArgs e)
         {
             p74Ab.BackColor = Color.FromName(color);
         }
-
         private void p74C_Click(object sender, EventArgs e)
         {
             p74C.BackColor = Color.FromName(color);
         }
-
         private void p74D_Click(object sender, EventArgs e)
         {
             p74D.BackColor = Color.FromName(color);
         }
-
         private void p74I_Click(object sender, EventArgs e)
         {
             p74I.BackColor = Color.FromName(color);
         }
-
         private void p75D_Click(object sender, EventArgs e)
         {
             p75D.BackColor = Color.FromName(color);
         }
-
         private void p75A_Click(object sender, EventArgs e)
         {
             p75A.BackColor = Color.FromName(color);
         }
-
         private void p75Ab_Click(object sender, EventArgs e)
         {
             p75Ab.BackColor = Color.FromName(color);
         }
-
         private void p75C_Click(object sender, EventArgs e)
         {
             p75C.BackColor = Color.FromName(color);
         }
-
         private void p75I_Click(object sender, EventArgs e)
         {
             p75I.BackColor = Color.FromName(color);
         }
-
         private void p85A_Click(object sender, EventArgs e)
         {
             p85A.BackColor = Color.FromName(color);
         }
-
         private void p85Ab_Click(object sender, EventArgs e)
         {
             p85Ab.BackColor = Color.FromName(color);
         }
-
         private void p85C_Click(object sender, EventArgs e)
         {
             p85C.BackColor = Color.FromName(color);
         }
-
         private void p85D_Click(object sender, EventArgs e)
         {
             p85D.BackColor = Color.FromName(color);
         }
-
         private void p85I_Click(object sender, EventArgs e)
         {
             p85I.BackColor = Color.FromName(color);
         }
-
         private void p84A_Click(object sender, EventArgs e)
         {
             p84A.BackColor = Color.FromName(color);
         }
-
         private void p84Ab_Click(object sender, EventArgs e)
         {
             p84Ab.BackColor = Color.FromName(color);
         }
-
         private void p84C_Click(object sender, EventArgs e)
         {
             p84C.BackColor = Color.FromName(color);
         }
-
         private void p84D_Click(object sender, EventArgs e)
         {
             p84D.BackColor = Color.FromName(color);
         }
-
         private void p84I_Click(object sender, EventArgs e)
         {
             p84I.BackColor = Color.FromName(color);
         }
-
         private void p83A_Click(object sender, EventArgs e)
         {
             p83A.BackColor = Color.FromName(color);
         }
-
         private void p83Ab_Click(object sender, EventArgs e)
         {
             p83Ab.BackColor = Color.FromName(color);
         }
-
         private void p83C_Click(object sender, EventArgs e)
         {
             p83C.BackColor = Color.FromName(color);
         }
-
         private void p83D_Click(object sender, EventArgs e)
         {
             p83D.BackColor = Color.FromName(color);
         }
-
         private void p83I_Click(object sender, EventArgs e)
         {
             p83I.BackColor = Color.FromName(color);
         }
-
         private void p82A_Click(object sender, EventArgs e)
         {
             p82A.BackColor = Color.FromName(color);
         }
-
         private void p82Ab_Click(object sender, EventArgs e)
         {
             p82Ab.BackColor = Color.FromName(color);
         }
-
         private void p82C_Click(object sender, EventArgs e)
         {
             p82C.BackColor = Color.FromName(color);
         }
-
         private void p82D_Click(object sender, EventArgs e)
         {
             p82D.BackColor = Color.FromName(color);
         }
-
         private void p82I_Click(object sender, EventArgs e)
         {
             p82I.BackColor = Color.FromName(color);
         }
-
         private void p81A_Click(object sender, EventArgs e)
         {
             p81A.BackColor = Color.FromName(color);
         }
-
         private void p81Ab_Click(object sender, EventArgs e)
         {
             p81Ab.BackColor = Color.FromName(color);
         }
-
         private void p81C_Click(object sender, EventArgs e)
         {
             p81C.BackColor = Color.FromName(color);
         }
-
         private void p81D_Click(object sender, EventArgs e)
         {
             p81D.BackColor = Color.FromName(color);
         }
-
         private void p81I_Click(object sender, EventArgs e)
         {
             p81I.BackColor = Color.FromName(color);
         }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -1496,22 +1402,69 @@ namespace CapaAplicacion
                 antecedentePF.NumeroCigarros = txtFrecuencia.Text;
                 antecedentePF.Observaciones = txtAPFObservaciones.Text;
                 historiaClinica.Antecedentes = antecedentePF;
-                int lazo        = 1;
-                int numeroPieza = 11;
-                while (lazo <= 52)
+                int intAux = 1;
+                int intLazo = 1;
+                int intNumeroPieza = 11;
+                while (intLazo <= 52)
                 {
-                    piezaDental = new PiezaDental();
-                    piezaDental.NumeroPieza = numeroPieza;
-                    
-                        
+                    var piezas = this.Controls.OfType<PictureBox>().Where(x => x.Name.StartsWith("p" + intNumeroPieza));
+                    foreach (var pieza in piezas)
+                    {
+                        switch (intAux)
+                        {
+                            case 1:
+                                historiaClinica.PiezasDentales[intLazo - 1].ColorDerecha = Convert.ToString(pieza.BackColor.Name);
+                                intAux++;
+                                break;
+                            case 2:
+                                historiaClinica.PiezasDentales[intLazo - 1].ColorCentro = Convert.ToString(pieza.BackColor.Name);
+                                intAux++;
+                                break;
+                            case 3:
+                                historiaClinica.PiezasDentales[intLazo - 1].ColorIzquierda = Convert.ToString(pieza.BackColor.Name);
+                                intAux++;
+                                break;
+                            case 4:
+                                historiaClinica.PiezasDentales[intLazo - 1].ColorAbajo = Convert.ToString(pieza.BackColor.Name);
+                                intAux++;
+                                break;
+                            case 5:
+                                historiaClinica.PiezasDentales[intLazo - 1].ColorArriba = Convert.ToString(pieza.BackColor.Name);
+                                intAux++;
+                                break;
+                        }
+                    }
+                    intAux = 1;
+                    intNumeroPieza++;
+                    if (intNumeroPieza == 19)
+                        intNumeroPieza = 21;
+                    else if (intNumeroPieza == 29)
+                        intNumeroPieza = 31;
+                    else if (intNumeroPieza == 39)
+                        intNumeroPieza = 41;
+                    else if (intNumeroPieza == 49)
+                        intNumeroPieza = 51;
+                    else if (intNumeroPieza == 56)
+                        intNumeroPieza = 61;
+                    else if (intNumeroPieza == 66)
+                        intNumeroPieza = 71;
+                    else if (intNumeroPieza == 76)
+                        intNumeroPieza = 81;
+                    intLazo++;
                 }
+                if (doctor.actualizarHistoriaClinica(historiaClinica))
+                {
+                    MessageBox.Show("Historia Clínica guardada.", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnGuardar.Enabled = false;
+                }
+                else
+                    MessageBox.Show("La Historia Clínica no se pudo guardar. \n Revise que los campos estén correctos.", "BIO-DENT", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch(Exception exep)
             {
                 MessageBox.Show(exep.Message);
             }
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             FrmPrincipal frmPrincipal = Owner as FrmPrincipal;

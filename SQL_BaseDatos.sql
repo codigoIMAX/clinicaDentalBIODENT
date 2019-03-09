@@ -90,8 +90,6 @@ fechaAbono date,
 abono money
 )
 GO
-INSERT INTO tblDoctor VALUES ('drManuelGuerrero', '25522552')
-GO
 CREATE PROCEDURE spIngresarPaciente 
 @cedula varchar(10), @nombres varchar(100), @apellidos varchar(100), @fechaNacimiento date, 
 @sexo bit, @ocupacion varchar(50), @estadoCivil varchar(50), @direccion varchar(100), 
@@ -184,7 +182,7 @@ CREATE PROCEDURE spCambiarContrasenia
 					UPDATE tblDoctor SET contrasenia = @nuevaContrasenia WHERE usuario = @usuario
 					SET @mensajeSalida = 'La contraseña ha sido modificada con éxito.'
 				END ELSE BEGIN
-					SET @mensajeSalida = 'La contraseña actual no coincide. \n Vuelva a intentarlo.'
+					SET @mensajeSalida = 'La contraseña actual no coincide. Vuelva a intentarlo.'
 				END
 			END ELSE BEGIN
 				SET @mensajeSalida = 'El usuario no existe.'
@@ -192,7 +190,7 @@ CREATE PROCEDURE spCambiarContrasenia
 		COMMIT TRANSACTION
 	END TRY
 	BEGIN CATCH
-		SET @mensajeSalida = 'Error al cambiar la contraseña. \n Inténtelo más tarde.'
+		SET @mensajeSalida = 'Error al cambiar la contraseña. Inténtelo más tarde.'
 		ROLLBACK TRANSACTION
 	END CATCH
 END
@@ -210,23 +208,11 @@ CREATE PROCEDURE spCambiarNombreUsuario
 		COMMIT TRANSACTION
 	END TRY
 	BEGIN CATCH
-		SET @mensajeSalida = 'Error al cambiar el nombre de usuario. \n Inténtelo más tarde.'
+		SET @mensajeSalida = 'Error al cambiar el nombre de usuario. Inténtelo más tarde.'
 		ROLLBACK TRANSACTION
 	END CATCH
 END
 GO
-
-DECLARE @salida varchar(80)
-EXECUTE spCambiarNombreUsuario 'manuelG', 'drManuelGuerrero', @salida OUTPUT
-PRINT @salida
-DECLARE @salida bit
-EXECUTE spIngresarPaciente '1716116809', 'Alejandro Esteban', 'Guerrero Tipán', '21/08/1994', 0, 'Estudiante Universitario', 'Soltero',
-'De Los Guabos Pasaje N48A E10-37 El Inca', '2402538', '0987858621', 'alejo_guerrero94@hotmail.com', 'N/A', 'N/A', 'S/N', 0, 0, 0, 0,
-0, 0, 0, 0, 0, 0, 'No toma', 0, 'No fuma', 'S/N', @salida OUTPUT
-PRINT @salida
+INSERT INTO tblDoctor VALUES ('drManuelGuerrero', '25522552')
 GO
-SELECT * FROM tblDoctor
-SELECT * FROM tblHistoriaClinica
-SELECT * FROM tblHistoriaClinica INNER JOIN tblAntecedentePF ON tblHistoriaClinica.numeroHistoriaClinica = tblAntecedentePF.numeroHistoriaClinica WHERE tblHistoriaClinica.cedulaPaciente = '0503628109'
-SELECT * FROM tblPiezaDental WHERE numeroHistoriaClinica = 1
 

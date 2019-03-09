@@ -83,6 +83,11 @@ namespace CapaAplicacion
             btnPlanTratamiento.Visible = true;
             btnTratamiento.Visible = true;
             btnSalir.Visible = true;
+            pnlHistoriaClinica.Visible = false;
+            pnlPlanTratamiento.Visible = false;
+            pnlTratamiento.Visible = false;
+            pnlSalir.Visible = false;
+            restaurarBackColor();
             ocultarBotonesConfiguracion();
             FrmPaciente frmPaciente = new FrmPaciente();
             DataTable tbl = doctor.obtenerPacientes();
@@ -101,6 +106,15 @@ namespace CapaAplicacion
             pnlPlanTratamiento.Visible = false;
             pnlTratamiento.Visible = false;
             pnlSalir.Visible = false;
+            restaurarBackColor();
+        }
+        private void restaurarBackColor()
+        {
+            btnHistoriaClinica.BackColor = Color.FromArgb(170, 216, 239);
+            btnPlanTratamiento.BackColor = Color.FromArgb(170, 216, 239);
+            btnTratamiento.BackColor = Color.FromArgb(170, 216, 239);
+            btnModificarUsuario.BackColor = Color.FromArgb(170, 216, 239);
+            btnModificarContrasenia.BackColor = Color.FromArgb(170, 216, 239);
         }
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
@@ -138,21 +152,24 @@ namespace CapaAplicacion
                 pnlPlanTratamiento.Visible = false;
                 pnlTratamiento.Visible = false;
                 pnlSalir.Visible = false;
+                btnHistoriaClinica.BackColor = Color.IndianRed;
+                btnPlanTratamiento.BackColor = Color.FromArgb(170, 216, 239);
+                btnTratamiento.BackColor = Color.FromArgb(170, 216, 239);
                 FrmHistoriaClinica frmHistoriaClinica = new FrmHistoriaClinica();
                 AddOwnedForm(frmHistoriaClinica);
                 frmHistoriaClinica.txtApellidos.Text = paciente.Apellidos;
                 frmHistoriaClinica.txtNombres.Text = paciente.Nombres;
                 if (historiaClinica.TratamientoMedicoActual != "")
                 {
-                    frmHistoriaClinica.txtMotivo.Text = historiaClinica.TratamientoMedicoActual;
                     frmHistoriaClinica.rdbTSi.Checked = true;
                     frmHistoriaClinica.txtMotivo.Enabled = true;
+                    frmHistoriaClinica.txtMotivo.Text = historiaClinica.TratamientoMedicoActual;
                 }
                 if (historiaClinica.TomaMedicamentoActual != "")
                 {
-                    frmHistoriaClinica.txtMedicamento.Text = historiaClinica.TomaMedicamentoActual;
                     frmHistoriaClinica.rdbMSi.Checked = true;
                     frmHistoriaClinica.txtMedicamento.Enabled = true;
+                    frmHistoriaClinica.txtMedicamento.Text = historiaClinica.TomaMedicamentoActual;
                 }
                 frmHistoriaClinica.txtHObservaciones.Text = historiaClinica.Observaciones;
                 if (historiaClinica.Antecedentes.AlergiaAntibiotico)
@@ -176,14 +193,14 @@ namespace CapaAplicacion
                 if (historiaClinica.Antecedentes.BebidasAlcoholicas)
                 {
                     frmHistoriaClinica.chbxBebidasAlcoholicas.Checked = true;
-                    frmHistoriaClinica.txtFrecuencia.Text = historiaClinica.Antecedentes.Frecuencia;
                     frmHistoriaClinica.txtFrecuencia.Enabled = true;
+                    frmHistoriaClinica.txtFrecuencia.Text = historiaClinica.Antecedentes.Frecuencia;
                 }
                 if (historiaClinica.Antecedentes.Fuma)
                 {
                     frmHistoriaClinica.chbxFuma.Checked = true;
-                    frmHistoriaClinica.txtCantidad.Text = historiaClinica.Antecedentes.NumeroCigarros;
                     frmHistoriaClinica.txtCantidad.Enabled = true;
+                    frmHistoriaClinica.txtCantidad.Text = historiaClinica.Antecedentes.NumeroCigarros;
                 }
                 frmHistoriaClinica.txtAPFObservaciones.Text = historiaClinica.Antecedentes.Observaciones;
                 frmHistoriaClinica.asignarDoctor(this.doctor, this.historiaClinica);
@@ -208,6 +225,9 @@ namespace CapaAplicacion
                 pnlPlanTratamiento.Visible = true;
                 pnlTratamiento.Visible = false;
                 pnlSalir.Visible = false;
+                btnHistoriaClinica.BackColor = Color.FromArgb(170, 216, 239);
+                btnPlanTratamiento.BackColor = Color.IndianRed;
+                btnTratamiento.BackColor = Color.FromArgb(170, 216, 239);
                 FrmPlanDeTratamiento frmPlanDeTratamiento = new FrmPlanDeTratamiento();
                 frmPlanDeTratamiento.txtApellidos.Text = paciente.Apellidos;
                 frmPlanDeTratamiento.txtNombres.Text = paciente.Nombres;
@@ -229,6 +249,9 @@ namespace CapaAplicacion
                 pnlPlanTratamiento.Visible = false;
                 pnlTratamiento.Visible = true;
                 pnlSalir.Visible = false;
+                btnHistoriaClinica.BackColor = Color.FromArgb(170, 216, 239);
+                btnPlanTratamiento.BackColor = Color.FromArgb(170, 216, 239);
+                btnTratamiento.BackColor = Color.IndianRed;
                 FrmDetalleTratamiento frmDetalleTratamiento = new FrmDetalleTratamiento();
                 frmDetalleTratamiento.txtApellidos.Text = paciente.Apellidos;
                 frmDetalleTratamiento.txtNombres.Text = paciente.Nombres;
@@ -262,6 +285,8 @@ namespace CapaAplicacion
         {
             pnlModificarUsuario.Visible = true;
             pnlModificarContrasenia.Visible = false;
+            btnModificarUsuario.BackColor = Color.IndianRed;
+            btnModificarContrasenia.BackColor = Color.FromArgb(170, 216, 239);
             FrmCambiarUsuario frmCambiarUsuario = new FrmCambiarUsuario();
             AddOwnedForm(frmCambiarUsuario);
             frmCambiarUsuario.asignarDoctor(this.doctor);
@@ -272,10 +297,18 @@ namespace CapaAplicacion
         {
             pnlModificarUsuario.Visible = false;
             pnlModificarContrasenia.Visible = true;
+            btnModificarUsuario.BackColor = Color.FromArgb(170, 216, 239);
+            btnModificarContrasenia.BackColor = Color.IndianRed;
             FrmCambiarContrasenia frmCambiarContrasenia = new FrmCambiarContrasenia();
             AddOwnedForm(frmCambiarContrasenia);
             frmCambiarContrasenia.asignarDoctor(this.doctor);
             abrirFormHijo(frmCambiarContrasenia);
+        }
+
+        private void btnAcercaDe_Click(object sender, EventArgs e)
+        {
+            FrmAcercaDe frmAcercaDe = new FrmAcercaDe();
+            frmAcercaDe.ShowDialog();
         }
     }
 }

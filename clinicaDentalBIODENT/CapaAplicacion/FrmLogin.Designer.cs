@@ -136,6 +136,7 @@
             this.txtContrasenia.TabIndex = 6;
             this.txtContrasenia.Text = "Contraseña";
             this.txtContrasenia.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtContrasenia_MouseClick);
+            this.txtContrasenia.Enter += new System.EventHandler(this.txtContrasenia_Enter);
             this.txtContrasenia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContrasenia_KeyPress);
             this.txtContrasenia.Leave += new System.EventHandler(this.txtContrasenia_Leave);
             // 
