@@ -9,16 +9,33 @@ using CapaDatos;
 
 namespace CapaNegocio
 {
+    /// <summary>
+    /// Esta clase permite realizar el control del sistema y el CRUD hacia la base de datos mediante el uso de la clase <c>BaseDeDato</c>.
+    /// </summary>
     public class Doctor
     {
+        /// <summary>
+        /// Constructor con parámetros de la clase <c>Doctor</c>.
+        /// </summary>
+        /// <param name="usuario">Nombre de usuario del tipo <c>string</c>.</param>
+        /// <param name="contrasenia">Contraseña del tipo <c>string</c>.</param>
         public Doctor(string usuario, string contrasenia)
         {
             this.Usuario = usuario;
             this.Contrasenia = contrasenia;
         }
-
+        /// <summary>
+        /// Método get y set del atributo <c>Usuario</c>.
+        /// </summary>
         public string Usuario { get; set; }
+        /// <summary>
+        /// Método get y set del atributo <c>Constrasenia</c>.
+        /// </summary>
         public string Contrasenia { get; set; }
+        /// <summary>
+        /// Autentica al doctor para el acceso al menú principal.
+        /// </summary>
+        /// <returns>Valor booleano para la autenticación.</returns>
         public bool validarDoctor()
         {
             SqlConnection conexion = BaseDeDato.obtenerConexion();
@@ -38,19 +55,40 @@ namespace CapaNegocio
                 return false;
             }
         }
+        /// <summary>
+        /// Modifica el nombre de usuario de acceso al sistema.
+        /// </summary>
+        /// <param name="usuarioActual">Nombre de usuario actual del tipo <c>string</c>.</param>
+        /// <param name="nuevoNombre">Nuevo nombre de usuario del tipo <c>string</c>.</param>
+        /// <returns>Un mensaje de confirmación.</returns>
         public string cambiarNombreUsuario(string usuarioActual, string nuevoNombre)
         {
             return BaseDeDato.modificarNombreUsuario(usuarioActual, nuevoNombre);
         }
+        /// <summary>
+        /// Modifica la contraseña de acceso al sistema.
+        /// </summary>
+        /// <param name="contraseniaActual">Contraseña actual del tipo <c>string</c>.</param>
+        /// <param name="nuevaContrasenia">Nueva contraseña del tipo <c>string</c>.</param>
+        /// <param name="usuario">Nombre de usuario del tipo <c>string</c>.</param>
+        /// <returns>Un mensaje de confirmación</returns>
         public string cambiarContrasenia(string contraseniaActual, string nuevaContrasenia, string usuario)
         {
             return BaseDeDato.modificarContrasenia(contraseniaActual, nuevaContrasenia, usuario);
         }
-        
+        /// <summary>
+        /// Recupera todos los pacientes registrados en la base de datos.
+        /// </summary>
+        /// <returns>La lista de pacientes en un <c>DataTable</c>.</returns>
         public DataTable obtenerPacientes()
         {
             return BaseDeDato.listarPacientes();
         }
+        /// <summary>
+        /// Busca un paciente junto con sus datos en base a la cédula del mismo.
+        /// </summary>
+        /// <param name="cedula">Cédula del paciente del tipo <c>string</c> para buscarlo en la base de datos.</param>
+        /// <returns>Un paciente junto con sus datos personales en base a la clase <c>Paciente</c>.</returns>
         public Paciente buscarPaciente(string cedula)
         {
             Paciente paciente = new Paciente();
@@ -78,10 +116,23 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return paciente;
         }
+        /// <summary>
+        /// Elimina un paciente de acuerdo a su número de cédula.
+        /// </summary>
+        /// <param name="cedula">Cédula del paciente del tipo <c>string</c> para eliminarlo de la base de datos.</param>
+        /// <returns>Un valor booleano para la confirmación.</returns>
         public bool eliminarPaciente(string cedula)
         {
             return BaseDeDato.eliminarPaciente(cedula);    
         }
+        /// <summary>
+        /// Actualiza los datos de un paciente en base a su número de cédula
+        /// Se ejecuta mediante un procedimiento almacenado.
+        /// </summary>
+        /// <remarks>Si el número de cédula se modifica, se tiene un parámetro con la cédula anterior para buscar al paciente y posteriormente modificar su número de cédula.</remarks>
+        /// <param name="historiaClinica">Historia clínica del paciente que contiene todos los datos a actualizar.</param>
+        /// <param name="cedulaAnterior">Cédula del paciente antes de ser modificada en caso de que se requiera.</param>
+        /// <returns>Un valor booleano para la confirmación.</returns>
         public bool actualizarPaciente(HistoriaClinica historiaClinica, string cedulaAnterior)
         {
             bool estado;
@@ -129,6 +180,11 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return false;
         }
+        /// <summary>
+        /// Obtiene la historia clínica de un paciente en particular en base a su número de cédula.
+        /// </summary>
+        /// <param name="cedula">Número de cédula del paciente del tipo <c>string</c>.</param>
+        /// <returns>La historia clínica del paciente.</returns>
         public HistoriaClinica buscarHistoriaClinica(string cedula)
         {
             HistoriaClinica historiaClinica = new HistoriaClinica();
@@ -164,6 +220,12 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return historiaClinica;
         }
+        /// <summary>
+        /// Permite registrar un paciente en la base de datos mediante un procedimiento almacenado.
+        /// </summary>
+        /// <param name="paciente">Contiene los datos personales del paciente en base a la clase <c>Paciente</c>.</param>
+        /// <param name="historiaClinica">Contiene los datos de la historia clínica del paciente en base a la clase <c>HistoriaClinica</c>.</param>
+        /// <returns>Un valor booleano de confirmación de la transacción.</returns>
         public bool ingresarPaciente(Paciente paciente, HistoriaClinica historiaClinica)
         {
             bool estado;
@@ -210,14 +272,29 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return false;
         }
+        /// <summary>
+        /// Recupera todos los planes de tratamiento definidos para una historia clínica en base a su número.
+        /// </summary>
+        /// <param name="numeroHistoriaClinica">Valor entero del número de historia clínica.</param>
+        /// <returns>Los planes de tratamiento en un <c>DataTable</c>.</returns>
         public DataTable obtenerPlanesTratamiento(int numeroHistoriaClinica)
         {
             return BaseDeDato.listarPlanesTratamiento(numeroHistoriaClinica);
         }
+        /// <summary>
+        /// Recupera los detalles definidos para un plan de tratamiento específico.
+        /// </summary>
+        /// <param name="idPlanTratamiento">Identificador del plan de tratamiento de tipo entero.</param>
+        /// <returns>Los detalles del plan de tratamiento en un <c>DataTable</c>.</returns>
         public DataTable obtenerDetalles(int idPlanTratamiento)
         {
             return BaseDeDato.listarDetalles(idPlanTratamiento);
         }
+        /// <summary>
+        /// Recupera los detalles de un plan de tratamiento.
+        /// </summary>
+        /// <param name="idPlanTratamiento">Identificador del plan de tratamiento.</param>
+        /// <returns>Una lista de los detalles en base a la clase <c>Detalle</c>.</returns>
         public List<Detalle> llenarDetalles(int idPlanTratamiento)
         {
             Detalle detalle;
@@ -242,6 +319,12 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return detalles;
         }
+        /// <summary>
+        /// Ingresa un plan de tratamiento a la base de datos.
+        /// </summary>
+        /// <param name="planTratamiento">Detalle del plan de tratamiento en base a la clase <c>PlanTratamiento</c>.</param>
+        /// <param name="numeroHistoriaClinica">Número de historia clínica para el plan de tratamiento.</param>
+        /// <returns>Un valor booleano de confirmación.</returns>
         public bool ingresarPlanTratamiento(PlanTratamiento planTratamiento, int numeroHistoriaClinica)
         {
             SqlConnection conexion = BaseDeDato.obtenerConexion();
@@ -279,6 +362,11 @@ namespace CapaNegocio
             }
                 
         }
+        /// <summary>
+        /// Modifica un plan de tratamiento en base a su identificador.
+        /// </summary>
+        /// <param name="planTratamiento">Detalle del plan de tratamiento en base a la clase <c>PlanTratamiento</c>.</param>
+        /// <returns>Un valor booleano de confirmación.</returns>
         public bool modificarPlanTratamiento(PlanTratamiento planTratamiento)
         {
             SqlConnection conexion = BaseDeDato.obtenerConexion();
@@ -311,10 +399,20 @@ namespace CapaNegocio
                 return false;
             }
         }
+        /// <summary>
+        /// Elimina un plan de tratamiento.
+        /// </summary>
+        /// <param name="idPlanTratamiento">Identificador de tipo entero para eliminar el plan de tratamiento.</param>
+        /// <returns>Un valor booleano de confirmación.</returns>
         public bool eliminarPlanTratamiento(int idPlanTratamiento)
         {
             return BaseDeDato.eliminarPlanTratamiento(idPlanTratamiento);
         }
+        /// <summary>
+        /// Recupera las actividades realizadas a un plan de tratamiento.
+        /// </summary>
+        /// <param name="idPlanTratamiento">Identificador del plan de tratamiento de tipo entero.</param>
+        /// <returns>Una lista de actividades del plan de tratamiento en base a la clase <c>Actividad</c>.</returns>
         public List<Actividad> llenarActividades(int idPlanTratamiento)
         {
             Actividad actividad;
@@ -339,6 +437,11 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return actividades;
         }
+        /// <summary>
+        /// Recupera los abonos realizados a un plan de tratamiento.
+        /// </summary>
+        /// <param name="idPlanTratamiento">Identificador del plan de tratamiento de tipo entero.</param>
+        /// <returns>Una lista de abonos del plan de tratamiento en base a la clase <c>Abono</c>.</returns>
         public List<Abono> llenarAbonos(int idPlanTratamiento)
         {
             Abono abono;
@@ -362,6 +465,12 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return abonos;
         }
+        /// <summary>
+        /// Ingresa las actividades realizadas en un plan de tratamiento.
+        /// </summary>
+        /// <param name="actividades">Lista de actividades correspondientes a un plan de tratamiento.</param>
+        /// <param name="idPlanTratamiento">Identificador de tipo entero para el plan de tratamiento.</param>
+        /// <returns>Un valor booleano de confirmación.</returns>
         public bool ingresarActividades(List<Actividad> actividades, int idPlanTratamiento)
         {
             SqlConnection conexion = BaseDeDato.obtenerConexion();
@@ -390,6 +499,12 @@ namespace CapaNegocio
                 return false;
             }
         }
+        /// <summary>
+        /// Ingresa los abonos realizados en un plan de tratamiento.
+        /// </summary>
+        /// <param name="abonos">Lista de abonoms correspondientes a un plan de tratamiento.</param>
+        /// <param name="idPlanTratamiento">Identificador de tipo entero para el plan de tratamiento.</param>
+        /// <returns>Un valor booleano de confirmación.</returns>
         public bool ingresarAbonos(List<Abono> abonos, int idPlanTratamiento)
         {
             SqlConnection conexion = BaseDeDato.obtenerConexion();
@@ -417,6 +532,11 @@ namespace CapaNegocio
                 return false;
             }
         }
+        /// <summary>
+        /// Recupera las piezas dentales de una historia clínica en particular.
+        /// </summary>
+        /// <param name="numeroHistoriaClinica">Número de historia clínica para llenar su odontograma.</param>
+        /// <returns>Una lista con las piezas dentales de la historia clínica en base a la clase <c>PiezaDental</c>.</returns>
         public List<PiezaDental> buscarPiezasDentales(int numeroHistoriaClinica)
         {
             PiezaDental piezaDental;
@@ -443,6 +563,11 @@ namespace CapaNegocio
             BaseDeDato.cerrarConexion(conexion);
             return piezasDentales;
         }
+        /// <summary>
+        /// Actualiza los datos de una historia clínica en particular.
+        /// </summary>
+        /// <param name="historiaClinica">Historia Clínica a ser actualizada.</param>
+        /// <returns>Un valor booleano de confirmación.</returns>
         public bool actualizarHistoriaClinica(HistoriaClinica historiaClinica)
         {
             SqlConnection conexion = BaseDeDato.obtenerConexion();
@@ -481,6 +606,11 @@ namespace CapaNegocio
                 return false;
             }
         }
+        /// <summary>
+        /// Calcula la edad de los pacientes registrados en base a su fecha de nacimiento.
+        /// </summary>
+        /// <param name="fechaNacimiento">Fecha de nacimiento del paciente del tipo <c>DateTime</c>.</param>
+        /// <returns>La edad del paciente de tipo entero.</returns>
         public int calcularEdad(DateTime fechaNacimiento)
         {
             int edad;
